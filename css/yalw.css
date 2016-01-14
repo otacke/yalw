@@ -1,0 +1,184 @@
+@charset "UTF-8";
+
+/* General Stuff */
+
+/*
+ * In #YALW_widget you may want to change the background color, the padding
+ * or similar general settings in order to suit YALW to your theme
+ */
+#YALW_widget {
+	/* background: linear-gradient(#D1D1D1 0%, #DCDCDC 100%); */
+	padding: 10px 1.5em;
+}
+
+.YALW_input_container {
+	margin-bottom: 1em;
+}
+
+.YALW_input {
+	width: 100%;
+}
+
+.YALW_label_container {
+	margin-bottom: 0.1em;
+}
+
+.YALW_label {
+	width: 100%;
+}
+
+.YALW_text_container{
+	margin-bottom: 1em;
+}
+
+.YALW_text{
+	margin-bottom: 1em;
+}
+
+.YALW_submit_container {
+	margin-bottom: 1em;
+}
+
+.YALW_submit {
+}
+
+
+/* Login Form */
+#YALW_widget.YALW_login_form {
+}
+
+#YALW_user_login_label {
+}
+
+#YALW_user_login {
+}
+
+#YALW_user_password_label {
+}
+
+#YALW_user_password {
+}
+
+#YALW_rememberme_container {
+	margin: 1em 0em 1em 0em;
+}
+
+#YALW_rememberme_label {
+}
+
+#YALW_rememberme {
+}
+
+#YALW_submit_login {
+}
+
+#YALW_credentials_lost_link_container {
+	margin-top: 1em;
+}
+
+
+/* Password Retrieval Form */
+#YALW_password_form {
+}
+
+#YALW_user_retrieval_login {
+}
+
+#YALW_submit_retrieval {
+}
+
+
+/* Code Entry Form */
+#YALW_code_form {
+}
+
+#YALW_code_label {
+}
+
+#YALW_code {
+}
+
+#YALW_submit_code {
+}
+
+
+/* New Password Form */
+#YALW_new_password_form {
+}
+
+#YALW_new_password_label {
+}
+
+#YALW_new_password {
+}
+
+#YALW_control_password_label {
+}
+
+#YALW_control_password {
+}
+
+#YALW_submit_new_password {
+}
+
+
+/* Password Sent Message */
+#YALW_password_sent_message {
+}
+
+#YALW_back_to_login_link {
+}
+
+
+/* Logged In Options */
+#YALW_dashboard_link {
+}
+
+#YALW_logout_link {
+}
+
+#YALW_login_options {
+	margin: 0;
+}
+
+#YALW_exceptions {
+}
+
+#YALW_warnings {
+}
+
+#YALW_information {
+}
+
+/* Informational Messages (green) */
+.YALW_information_container {
+	padding: 1em 1.1em 1em 1.1em;
+	margin: 0.4em 0 0 0;
+	/* background: linear-gradient(#dcdcdc 0%, #e8e8e8 100%); */
+	border-left-color:#6d8300;
+	border-left-style:solid;
+	border-left-width:0.4em;
+	box-shadow:rgba(0, 0, 0, 0.0980392) 0 1px 1px 0;
+}
+
+/* Warning Messages (orange) */
+.YALW_warnings_container {
+	padding: 1em 1.1em 1em 1.1em;
+	margin: 0.4em 0 0 0;
+	/* background: linear-gradient(#dcdcdc 0%, #e8e8e8 100%); */
+	border-left-color:#e16d00;
+	border-left-style:solid;
+	border-left-width:0.4em;
+	box-shadow:rgba(0, 0, 0, 0.0980392) 0 1px 1px 0;
+}
+
+/* Error Messages (red) */
+.YALW_exceptions_container {
+	padding: 1em 1.1em 1em 1.1em;
+	margin: 0.4em 0 0 0;
+	/* background: linear-gradient(#dcdcdc 0%, #e8e8e8 100%); */
+	border-left-color:#be1e3c;
+	border-left-style:solid;
+	border-left-width:0.4em;
+	box-shadow:rgba(0, 0, 0, 0.0980392) 0 1px 1px 0;
+}

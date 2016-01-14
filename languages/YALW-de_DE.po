@@ -1,0 +1,299 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: YALW\n"
+"POT-Creation-Date: 2015-05-07 15:17+0100\n"
+"PO-Revision-Date: 2015-05-07 15:17+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: YALW.php:64
+msgid "Yet Another Login Widget"
+msgstr "Yet Another Login Widget"
+
+#: YALW.php:65
+msgid "A simple login widget"
+msgstr "Ein einfaches Login-Widget"
+
+#: YALW.php:221 settings.php:22
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Sie haben nicht die nötigen Rechte, um auf die Seite zuzugreifen."
+
+#: YALW.php:231 settings.php:32
+msgid "Text for the code reset mail"
+msgstr "Text für die Code-Reset-E-Mail"
+
+#: YALW.php:235
+msgid ""
+"Here you can enter the message that will be mailed for delivering the reset "
+"code. [user_login] will be replaced by the user's name, [reset_code] will be "
+"replaced by the reset code and [admin_email] will be replaced by the admin's "
+"email address."
+msgstr ""
+"Hier können Sie die Nachricht eingeben, mit der der Reset Code verschickt "
+"wird. [user_login] wird durch den Namen des Benutzers ersetzt, [reset_code] "
+"durch den Reset-Code und [admin_email] durch die E-Mail-Adresse des "
+"Administrators."
+
+#: display.php:30 display.php:35 display.php:37
+msgid "Welcome"
+msgstr "Willkommen,"
+
+#: display.php:44 display.php:82
+msgid "Login"
+msgstr "Anmelden"
+
+#: display.php:62
+msgid "Username"
+msgstr "Benutzername"
+
+#: display.php:69
+msgid "Password"
+msgstr "Passwort"
+
+#: display.php:87
+msgid "Lost your credentials?"
+msgstr "Zugangsdaten vergessen?"
+
+#: display.php:105
+msgid "Username or E-mail:"
+msgstr "Benutzername oder E-Mail-Adresse"
+
+#: display.php:113
+msgid "Get New Password"
+msgstr "Neues Passwort anfordern"
+
+#: display.php:131
+msgid "Reset-Code"
+msgstr "Code für den Passwort-Reset"
+
+#: display.php:139
+msgid "Check code"
+msgstr "Code absenden"
+
+#: display.php:160
+msgid "New password"
+msgstr "Neues Passwort"
+
+#: display.php:168
+msgid "Retype password"
+msgstr "Wiederholung des Passworts"
+
+#: display.php:176
+msgid "Reset password and login"
+msgstr "Passwort setzen und anmelden"
+
+#: display.php:195
+msgid "Dashboard"
+msgstr "Administration"
+
+#: display.php:198
+msgid "Logout"
+msgstr "Abmelden"
+
+#: handlers.php:29 handlers.php:69 handlers.php:348 handlers.php:437
+msgid ""
+"There seems to be a security issue. Please do not continue, but inform us!"
+msgstr ""
+"Es scheint ein Sicherheitsproblem zu geben. Bitte fahren Sie nicht fort, "
+"sondern informieren Sie uns!"
+
+#: handlers.php:35
+msgid "Please enter your username."
+msgstr "Bitte geben Sie Ihren Benutzernamen an."
+
+#: handlers.php:41
+msgid "Please enter your password."
+msgstr "Bitte geben Sie Ihr Passwort an."
+
+#: handlers.php:88
+msgid "Password reset is not allowed for this user"
+msgstr ""
+"Es ist für diese Benutzerin/diesen Benuter nicht erlaubt, das Passwort "
+"zurückzusetzen."
+
+#: handlers.php:102
+msgid ""
+"You should have received an email with a reset code. Please check your inbox."
+msgstr ""
+"Sie sollten eine E-Mail mit einem Code zum Neusetzen Ihres Passworts "
+"erhalten haben. Bitte prüfen Sie Ihren Posteingang."
+
+#: handlers.php:116
+msgid "Please enter your username or e-mail address."
+msgstr "Bitte geben Sie einen Benutzernamen oder eine E-Mail-Adresse an."
+
+#: handlers.php:122
+msgid "There is no user registered with that email address."
+msgstr ""
+"Bei uns ist keine Benutzerin/kein Benutzer mit dieser E-Mail-Adresse "
+"hinterlegt."
+
+#: handlers.php:128
+msgid "The username is not registered."
+msgstr "Der Benutzername ist bei uns nicht registriert."
+
+#: handlers.php:131 handlers.php:179 handlers.php:182 handlers.php:475
+#: handlers.php:478
+msgid ""
+"An internal program error has occured. Your request cannot be complied with. "
+"Please inform us."
+msgstr ""
+"Es gab einen internen Programmfehler. Ihrer Bitte kann daher nicht "
+"entsprochen werden. Bitte informieren Sie uns."
+
+#: handlers.php:190 handlers.php:360
+msgid ""
+"There seems to be a problem with our database. Sorry. Please try again later."
+msgstr ""
+"Offenbar gibt es ein Problem mit unserer Datenbank. Wir bitten um "
+"Entschuldigung. Bitte versuchen Sie es später noch einmal."
+
+#: handlers.php:197
+msgid "The e-mail could not be sent."
+msgstr ""
+"Möglicherweise gibt es gerade eine Störung des E-Mail-Versands. Wir bitten "
+"um Entschuldigung. Bitte kontaktieren Sie uns."
+
+#: handlers.php:197
+msgid "Possible reason: your host may have disabled the mail() function."
+msgstr ""
+"Möglicherweise gibt es gerade eine Störung des E-Mail-Versands. Wir bitten "
+"um Entschuldigung. Bitte versuchen Sie es später erneut."
+
+#: handlers.php:231
+#, php-format
+msgid "[%s] Password Reset"
+msgstr "[%s] Soll Ihr Passwort zurückgesetzt werden?"
+
+#: handlers.php:318
+msgid ""
+"Dear [user_login], please enter [reset_code] in the input field. You can set "
+"a new password afterwards."
+msgstr ""
+"Liebe Portfolioinhaberin/lieber Portfolioinhaber,\n"
+"\n"
+"jemand (vermutlich Sie selbst) möchte das Passwort für Ihr Nutzerkonto "
+"[user_login] zurücksetzen. Sollte dies nicht von Ihnen veranlasst worden "
+"sein, ignorieren Sie bitte einfach diese E-Mail. Es wird dann nichts weiter "
+"geschehen. Sollten Sie Ihr Passwort tatsächlich zurücksetzen wollen, können "
+"Sie den folgenden Code dort im Lehrportfolio eingeben, wo Sie gerade auf "
+"\"Neues Passwort\" geklickt haben:\n"
+"\n"
+"[reset_code]\n"
+"\n"
+"Sollten Sie dabei Schwierigkeiten haben, wenden Sie sich bitte an uns: "
+"lehrportfolio@tu-braunschweig.de\n"
+"\n"
+"Viele Grüße\n"
+"Ihr E-Portfolio-Team"
+
+#: handlers.php:393
+msgid "The code was wrong too often. Please get a new one."
+msgstr ""
+"Sie haben den Code zu oft falsch eingegeben. Bitte lassen Sie sich einen "
+"neuen zusenden."
+
+#: handlers.php:397
+msgid "The code is wrong."
+msgstr "Der von Ihnen eingegebene Code stimmt nicht."
+
+#: handlers.php:441
+msgid "I'm sorry, Dave. I'm afraid I can't do that."
+msgstr "Es tut mir leid, Dave, aber das kann ich nicht tun."
+
+#: handlers.php:449
+msgid "The password cannot be empty."
+msgstr "Bitte geben Sie ein Passwort ein."
+
+#: handlers.php:453
+msgid "The passwords are not the same. Please re-enter."
+msgstr "Die Passwörter stimmen nicht überein. Bitte geben Sie sie erneut ein."
+
+#: handlers.php:488
+msgid "There seems to be something wrong with the username or password."
+msgstr ""
+"Mit dem Benutzernamen oder dem Passwort scheint etwas nicht zu stimmen."
+
+#: settings.php:36
+msgid ""
+"Here you can enter the message that will be mailed for delivering the reset "
+"code. [user_login] will be replaced by the user's name and [reset_code] will "
+"be replaced by the reset code."
+msgstr ""
+"Hier können Sie die Nachricht eintragen, die beim Anfordern eines Reset-"
+"Codes verschickt wird. [user_login] wird durch den Nutzernamen ersetzt und "
+"[reset_code] durch den Reset-Code."
+
+#~ msgid ""
+#~ "Here you can enter the message that will be mailed for delivering the "
+#~ "reset code. The following placeholder can be used: [user_login] will be "
+#~ "replaced by the user's name, [reset_code] will be replaced by the reset "
+#~ "code and [admin_email] will be replaced by the admin's email address."
+#~ msgstr ""
+#~ "Hier können Sie die Nachricht eingeben, mit der der Reset Code verschickt "
+#~ "wird. [user_login] wird durch den Namen des Benutzers ersetzt, "
+#~ "[reset_code] durch den Reset-Code und [admin_email] durch die E-Mail-"
+#~ "Adresse des Administrators."
+
+#~ msgid ""
+#~ "Here you can enter the message that will be mailed for delivering the "
+#~ "reset code. The following placeholder can be uses:\\n [user_login] will "
+#~ "be replaced by the user's name\\n[reset_code] will be replaced by the "
+#~ "reset code\\n[admin_email] will be replaced by the admin's email address"
+#~ msgstr ""
+#~ "Hier können Sie die Nachricht eingeben, die für die Bereitstellung des "
+#~ "Reset-Codes verschickt wird. Die folgenden Platzhalter können verwendet "
+#~ "werden:\\n [user_login] Benutzername\\n [reset_code] Reset Code\\n "
+#~ "[admin_email] E-Mail-Adresse des Administrators"
+
+#~ msgid "Please, don't do that!"
+#~ msgstr "Bitte tu das nicht, Dave!"
+
+#~ msgid "Remember Me"
+#~ msgstr "Angemeldet bleiben"
+
+#~ msgid "Your password has been reset and you have been logged in."
+#~ msgstr "Ihr Passwort wurde neu gesetzt, und Sie wurden eingelogged."
+
+#~ msgid "We sent you a link that you can use to reset your password."
+#~ msgstr ""
+#~ "Wir haben Ihnen einen Link gesendet, mit dem Sie Ihr Passwort "
+#~ "zurücksetzen können."
+
+#~ msgid "To Login"
+#~ msgstr "Zur Anmeldung"
+
+#~ msgid "We neither know username nor e-mail address."
+#~ msgstr ""
+#~ "Weder der Benutzername noch die E-Mail-Adresse ist bei uns hinterlegt."
+
+#~ msgid "Login Failure!"
+#~ msgstr "D"
+
+#~ msgid "Log In"
+#~ msgstr "Anmelden"
+
+#~ msgid "<strong>ERROR</strong>: Invalid username or e-mail."
+#~ msgstr "Weder Benutzername noch E-Mail-Adresse ist bei uns hinterlegt."
+
+#~ msgid "<strong>ERROR</strong>: Enter a username or e-mail address."
+#~ msgstr "Bitte geben Sie einen Benutzernamen oder eine E-Mail-Adresse an."
+
+#~ msgid "<strong>ERROR</strong>: The password field is empty."
+#~ msgstr "Bitte geben Sie Ihr Passwort an."
+
+#~ msgid "Widget Title"
+#~ msgstr "Login"
+
+#~ msgid "Sample Text!"
+#~ msgstr "Beispieltext"
