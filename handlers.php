@@ -200,6 +200,7 @@ class Handlers {
 					__( 'The e-mail could not be sent.', 'YALW' ) . '<br />' . __( 'Possible reason: your host may have disabled the mail() function.', 'YALW' ),
 					'error' );
 		} else {
+			Session::clean_code_error_count();
 			return true;
 		}
 	}
@@ -319,7 +320,7 @@ class Handlers {
 		}
 
 		$message = get_option( 'code_reset_email', __( 'Dear [user_login], please enter [reset_code] in the input field. You can set a new password afterwards.', 'YALW' ) );
-		
+		 
 		// replace the markers within the message text by appropriate values
 		$message = str_replace( '[user_login]', $user_login, $message );
 		$message = str_replace( '[reset_code]', $reset_code, $message );
@@ -363,19 +364,10 @@ class Handlers {
 			$events->add( 'unknown_error' , __( 'There seems to be a problem with our database. Sorry. Please try again later.', 'YALW' ), 'error' );
 		} elseif ( $_POST['YALW_code'] != $db_code ) {
 			Session::increment_code_error_count();
+
 			if ( Session::get_code_error_count() > $MAX_CODE_RETRIES ) {
 				// maximum retries exceeded, set new code
 				Handlers::set_random_reset_code( $user_login );
-				
-				/*
-				 * We log the fact that the code was entered wrong too often. Too many of these
-				 * entries in the logfile, e. g. three within a certain period of time, can be used
-				 * via fail2ban to block the user's IP address. It is likely someone is trying to
-				 * "brute force" the plugin.
-				 */
-				\openlog( 'yalw(' . $_SERVER['HTTP_HOST'] . ')', LOG_NDELAY|LOG_PID, LOG_AUTH );
-				\syslog( LOG_NOTICE, "Code reset failure for $user_login from " . Handlers::get_remote_address() );
-				
 				/*
 				 * From a security driven point of view, we could erase the
 				 * username in the session so the user must reenter it -- we
@@ -385,6 +377,14 @@ class Handlers {
 				Session::set_next_widget_task( 'retrieve_code' );
 				$events->add( 'code_reset' , __( 'The code was wrong too often. Please get a new one.', 'YALW' ), 'warn' );
 			} else {
+				/*
+				 * We log the fact that the code was entered wrong. Too many of these
+				 * entries in the logfile, e. g. three within a certain period of time, can be used
+				 * via fail2ban to block the user's IP address. It is likely someone is trying to
+				 * "brute force" the plugin.
+				 */
+				\openlog( 'yalw(' . $_SERVER['HTTP_HOST'] . ')', LOG_NDELAY|LOG_PID, LOG_AUTHPRIV );
+				\syslog( LOG_NOTICE, "Code reset failure for $user_login from " . Handlers::get_remote_address() );
 				// code wrong
 				Session::set_next_widget_task( 'check_code' );
 				$events->add( 'code_mismatch' , __( 'The code is wrong.', 'YALW' ), 'warn' );
