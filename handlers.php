@@ -199,8 +199,8 @@ class Handlers {
 					'email_not_sent' ,
 					__( 'The e-mail could not be sent.', 'YALW' ) . '<br />' . __( 'Possible reason: your host may have disabled the mail() function.', 'YALW' ),
 					'error' );
-        } else {
-            Session::clean_code_error_count();
+		} else {
+			Session::clean_code_error_count();
 			return true;
 		}
 	}
@@ -363,7 +363,7 @@ class Handlers {
 			Session::set_next_widget_task( 'check_code' );			
 			$events->add( 'unknown_error' , __( 'There seems to be a problem with our database. Sorry. Please try again later.', 'YALW' ), 'error' );
 		} elseif ( $_POST['YALW_code'] != $db_code ) {
-            Session::increment_code_error_count();
+			Session::increment_code_error_count();
 
 			if ( Session::get_code_error_count() > $MAX_CODE_RETRIES ) {
 				// maximum retries exceeded, set new code
