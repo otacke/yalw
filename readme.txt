@@ -3,8 +3,8 @@ Contributors: otacke
 Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c0c/
 Tags: login, widget
 Requires at least: 4.0
-Tested up to: 4.4.1
-Stable tag: 4.4
+Tested up to: 4.5
+Stable tag: 4.5
 License: WTFPL – Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
@@ -22,7 +22,7 @@ time or ambition to deal with the project management processes of the Wordpress 
 integrated some day. I need to get shit done. And, more importantly, I don't consider myself a good programmer. It's probably not advisable for me to tinker
 with such a crucial part of Wordpress.
 
-Thanks to [edik](https://profiles.wordpress.org/plocha/ "edik") for his support!
+Thanks to [edik](https://profiles.wordpress.org/plocha/ "edik") for his support and to [akoww](https://github.com/akoww) for fixing bugs!
 
 = Details =
 * Allows to configure the email message that is sent to reset a lost password.
@@ -50,11 +50,21 @@ None so far.
 
 == Changelog ==
 
+= 0.12 =
+* now logs whenever a code was entered wrong instead of only logging too many wrong attempts.
+* improved security: autocomplete in password field not allowed anymore
+* improved security: sets HttpOnly flag to mitigate the risk of client side script accessing the protected cookie
+* fixed a bug that prevented YALW to run with BuddyPress.
+* fixed a bug with fail2ban.
+
 = 0.11 =
 * Initial public version (English + locale files for German).
 
 
 == Upgrade Notice ==
+
+= 0.12 =
+Upgrade if you need improvements for working with fail2ban or if you're runnung BuddyPress.
 
 = 0.11 =
 Initial public version.

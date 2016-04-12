@@ -9,4 +9,4 @@ time or ambition to deal with the project management processes of the Wordpress 
 integrated some day. I need to get shit done. And, more importantly, I don't consider myself a good programmer. It's probably not advisable for me to tinker
 with such a crucial part of Wordpress.
 
-Thanks to [edik](https://profiles.wordpress.org/plocha/ "edik") for his support!
+Thanks to [edik](https://profiles.wordpress.org/plocha/ "edik") for his support and to [akoww](https://github.com/akoww) for fixing bugs!

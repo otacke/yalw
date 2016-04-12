@@ -11,7 +11,7 @@ namespace YALW;
  * Display functions for the widget 
  *
  * @package YALW
- * @since 0.4
+ * @since 0.5
  */
 class Display {
 	/**
@@ -68,7 +68,7 @@ class Display {
 		echo '</div>';
 
 		echo '<div class="YALW_label_container"><label id="YALW_user_password_label" for="YALW_user_password" class="YALW_label">' . esc_attr( __( 'Password', 'YALW' ) ) . '</label></div>';
-		echo '<div class="YALW_input_container"><input type="password" name="YALW_user_password" id="YALW_user_password" class="YALW_input" size="20" required="required"/></div>';
+		echo '<div class="YALW_input_container"><input type="password" name="YALW_user_password" id="YALW_user_password" class="YALW_input" size="20" required="required" autocomplete="off" /></div>';
 		
 		do_action( 'login_form' );
 		
@@ -162,7 +162,7 @@ class Display {
 		echo '</div>';
 		
 		echo '<div class="YALW_input_container">';
-		echo '<input type="password" name="YALW_new_password" id="YALW_new_password" class="YALW_input" size="20" required="required"/>';
+		echo '<input type="password" name="YALW_new_password" id="YALW_new_password" class="YALW_input" size="20" required="required" autocomplete="off" />';
 		echo '</div>';
 
 		echo '<div class="YALW_label_container">';
@@ -170,7 +170,7 @@ class Display {
 		echo '</div>';
 		
 		echo '<div class="YALW_input_container">';
-		echo '<input type="password" name="YALW_control_password" id="YALW_control_password" class="YALW_input" size="20" required="required" />';
+		echo '<input type="password" name="YALW_control_password" id="YALW_control_password" class="YALW_input" size="20" required="required" autocomplete="off" />';
 		echo '</div>';
 		
 		echo '<div class="YALW_submit_container">';

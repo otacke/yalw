@@ -18,7 +18,7 @@ namespace YALW;
  * - code_error_count = (integer) amount of unsuccessful code entries
  *
  * @package YALW
- * @since 0.4
+ * @since 0.5
  */
 class Session {
 	/**
@@ -26,6 +26,15 @@ class Session {
 	 */
 	public static function start_session() {
 		if ( ! session_id() ) {
+			// set HttpOnly flag to prevent scripts from accessing the cookie
+			$cookie_params = session_get_cookie_params();
+			session_set_cookie_params  (
+					$cookie_params['lifetime'],
+					$cookie_params['path'],
+					$cookie_params['domain'],
+					$cookie_params['secure'],
+					true ); // httponly
+		
 			session_start();
 		}
 	}
