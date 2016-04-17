@@ -4,7 +4,7 @@ Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c
 Tags: login, widget
 Requires at least: 4.0
 Tested up to: 4.5
-Stable tag: 4.5
+Stable tag: 0.13
 License: WTFPL – Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
@@ -50,6 +50,9 @@ None so far.
 
 == Changelog ==
 
+= 0.13 =
+* added header information neccessary for proper Wordpress localization
+
 = 0.12 =
 * now logs whenever a code was entered wrong instead of only logging too many wrong attempts.
 * improved security: autocomplete in password field not allowed anymore
@@ -62,6 +65,9 @@ None so far.
 
 
 == Upgrade Notice ==
+
+= 0.13 =
+Upgrade if you plan to create locale files for YALW.
 
 = 0.12 =
 Upgrade if you need improvements for working with fail2ban or if you're runnung BuddyPress.
