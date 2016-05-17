@@ -1,5 +1,5 @@
 # yalw
-This widget for Wordpress is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, 
+This widget for Wordpress (see [Wordpress Plugin directory](https://wordpress.org/plugins/yalw/)) is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, 
 done. Well, maybe not quite. You may want to modify the stylesheet a little bit to match your theme's needs...
 
 YALW rebuilds quite a bunch of features offered by wp-login.php instead of using the features therein because it is hardly possible. I had the option to
