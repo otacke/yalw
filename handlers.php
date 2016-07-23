@@ -607,4 +607,3 @@ class Handlers {
 		return $_SERVER['REMOTE_ADDR'];
 	}
 }
-?>

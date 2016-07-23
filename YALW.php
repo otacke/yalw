@@ -6,7 +6,7 @@
  * Author: Oliver Tacke
  * Author URI: http://www.olivertacke.de
  * Text Domain: YALW
- * Domain Path: /languages
+ * Domain Path: /languages/
  * License: WTFPL
  * License URI: http://www.wtfpl.net/about/
  *
@@ -219,4 +219,3 @@ if ( is_admin() ) {
 	add_action( 'admin_menu', 'YALW\yalw_plugin_menu' );
 	add_action( 'admin_init', 'YALW\register_settings' );
 }
-?>

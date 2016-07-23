@@ -294,4 +294,3 @@ class Display {
 		echo '</div>';
 	}	
 }
-?>

@@ -197,5 +197,3 @@ class Session {
 		unset( $_SESSION['code_error_count'] );
 	}
 }
-
-?>
