@@ -273,24 +273,25 @@ class Display {
 		echo '<div class="wrap">';
 		echo '<h2>YALW</h2>';
 		echo '<form method="post" action="options.php"> ';
-		settings_fields( 'yalwoption-group' );
-		do_settings_sections( 'yalwmyoption-group' );
+		settings_fields( 'yalw' );
+		do_settings_sections( 'yalw' );
 		echo '<table class="form-table">';
 		echo '<tr valign="top">';
 		echo '<th scope="row">' . esc_attr( __( 'Text for the code reset mail', 'YALW' ) ) . '</th>';
 		echo '<td>';
 		echo '<p>';
-		echo '<label for="code_reset_email">';
+		echo '<label for="yalw_code_reset_email">';
 		echo __( 'Here you can enter the message that will be mailed for delivering the reset code. [user_login] will be replaced by the user\'s name, [reset_code] will be replaced by the reset code and [admin_email] will be replaced by the admin\'s email address.', 'YALW' );
 		echo '</label>';
 		echo '</p>';
-		echo '<p><textarea name="code_reset_email" rows="10" cols="50" id="code_reset_email" class="large-text code">' . get_option( 'code_reset_email' ) . '</textarea></p>';
+		echo '<p><textarea name="yalw_code_reset_email" rows="10" cols="50" id="yalw_code_reset_email" class="large-text code">' . get_option( 'yalw_code_reset_email' ) . '</textarea></p>';
 		echo '</td>';
 		echo '</tr>';
+
 		echo '</table>';
 		submit_button();
 		echo '</form>';
 		echo '</div>';
-}	
+	}	
 }
 ?>

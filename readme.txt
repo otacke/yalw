@@ -52,6 +52,7 @@ None so far.
 
 = 0.13 =
 * added header information neccessary for proper Wordpress localization
+* improved settings page
 
 = 0.12 =
 * now logs whenever a code was entered wrong instead of only logging too many wrong attempts.

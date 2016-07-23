@@ -205,7 +205,7 @@ function yalw_plugin_menu() {
  * register the settings for YALW
  */
 function register_settings() {
-	register_setting( 'yalwoption-group', 'code_reset_email' );
+	register_setting( 'yalw', 'yalw_code_reset_email' );
 }
 
 // Let's add some action :-)

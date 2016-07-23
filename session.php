@@ -10,7 +10,7 @@ namespace YALW;
  * get- and set-methods. Then again, I think that some function names make
  * the codes logic more clear than assigning values to session variables.
  *
- * Keys uses during session handling:
+ * Keys used during session handling:
  * - action           = (string) task to be performed by Display
  * - events           = (WP_Error) notifications for the user
  * - user_login       = (string) login given, later login retrieved from WP database 
