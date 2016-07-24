@@ -45,7 +45,7 @@ None so far.
 
 == Screenshots ==
 
-1. On the left you can see the YALW widget for login.
+1. On the right you can see the YALW widget for login on a plain Twentysixteen theme.
 2. You can configure an individual email message that is sent to reset a lost password.
 
 == Changelog ==

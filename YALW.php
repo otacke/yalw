@@ -12,7 +12,6 @@
  *
  * TODO: implement sending all messages with error status to the admin
  *       (maybe in a later version)
- * TODO: make the Widget customizable via options (maybe in a later version)
  * TODO: add password strength detector (maybe in a later version),
  *       see display.php/display_new_password_form() 
  */
@@ -39,7 +38,7 @@ namespace YALW;
 // As suggested by the Wordpress Community
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-// display.php contains all functions for sending output the the browser
+// display.php contains all functions for sending widget output the the browser
 require_once( __DIR__ . '/display.php' );
 
 // handlers.php contains all general handler functions and their sub fuctions
@@ -47,6 +46,9 @@ require_once( __DIR__ . '/handlers.php' );
 
 // session.php contains all functions to control the session
 require_once( __DIR__ . '/session.php' );
+
+// settings.php contains all functions for the YALW settings
+require_once( __DIR__ . '/settings.php' );
 
 /**
  * Main class.
@@ -188,26 +190,6 @@ function init_widget() {
 	control_login();
 }
 
-/**
- * add the menu item for YALW
- */
-function yalw_plugin_menu() {
-	add_options_page(
-			'YALW Options',
-			'YALW',
-			'manage_options',
-			'YALW-OPTIONS',
-			'YALW\Display::yalw_plugin_options'
-		);
-}
-
-/**
- * register the settings for YALW
- */
-function register_settings() {
-	register_setting( 'yalw', 'yalw_code_reset_email' );
-}
-
 // Let's add some action :-)
 add_action( 'widgets_init', 'YALW\register_YALW_widget' );
 add_action( 'init', 'YALW\Session::start_session', 1 );
@@ -216,6 +198,7 @@ add_action( 'wp_login', 'YALW\Session::end_session' );
 add_action( 'init', 'YALW\init_widget' );
 
 if ( is_admin() ) {
-	add_action( 'admin_menu', 'YALW\yalw_plugin_menu' );
-	add_action( 'admin_init', 'YALW\register_settings' );
+	$settings = new Settings;
+	//add_action( 'admin_menu', 'YALW\Settings::yalw_plugin_menu' );
+	//add_action( 'admin_init', 'YALW\Settings::register_settings' );
 }

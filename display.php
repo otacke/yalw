@@ -72,12 +72,13 @@ class Display {
 		
 		do_action( 'login_form' );
 		
-		// TODO: make this option configurable via options
-		/*
-		echo '<div id="YALW_rememberme_container">';
-		echo '<label id="YALW_rememberme_label" for="YALW_rememberme" class="YALW_label"><input name="YALW_rememberme" type="checkbox" id="YALW_rememberme" value="forever" /> ' . esc_attr( __( 'Remember Me', 'YALW') ) . '</label>';
-		echo '</div>';
-		 */
+		// show option to remember the user after login if chosen in settings
+		$options = get_option( 'yalw_option' );
+		if ( isset( $options['widget_rememberme'] ) && $options['widget_rememberme'] == 1 ) {
+			echo '<div id="YALW_rememberme_container">';
+			echo '<label id="YALW_rememberme_label" for="YALW_rememberme" class="YALW_label"><input name="YALW_rememberme" type="checkbox" id="YALW_rememberme" value="forever" /> ' . esc_attr( __( 'Remember Me', 'YALW') ) . '</label>';
+			echo '</div>';
+		}
 		
 		echo '<div class="YALW_submit_container">';
 		echo '<input type="submit" name="YALW_submit" id="YALW_submit_login" class="button button-primary button-large" value="' . esc_attr( __( 'Login', 'YALW' ) ). '" />';
@@ -208,7 +209,7 @@ class Display {
 	private static function display_error_messages() {
 		$events = Session::get_events();
 		if ( ( ! empty( $events ) ) && ( is_wp_error( $events ) ) ) {
-			$notifications = Display::sort_events( $events );
+			$notifications = Display::prepare_events_for_display( $events );
 			foreach ( $notifications as $type => $message ) {
 				if ( ! empty( $message ) ) {
 					echo '<div id="YALW_' . $type . '" class="YALW_' . $type . '_container">' . apply_filters( 'login_errors', $message ) . "</div>\n";
@@ -224,7 +225,7 @@ class Display {
 	 * @param WP_Error $events the events
 	 * @return array array sorted by types
 	 */
-	private static function sort_events( $events ) {
+	private static function prepare_events_for_display( $events ) {
 		/*
 		 * in future versions, this might possibly become more elegant as the
 		 * event types could also be made flexible, not hard coded
