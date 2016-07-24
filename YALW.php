@@ -199,6 +199,4 @@ add_action( 'init', 'YALW\init_widget' );
 
 if ( is_admin() ) {
 	$settings = new Settings;
-	//add_action( 'admin_menu', 'YALW\Settings::yalw_plugin_menu' );
-	//add_action( 'admin_init', 'YALW\Settings::register_settings' );
 }
