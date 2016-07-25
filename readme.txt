@@ -4,7 +4,7 @@ Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c
 Tags: login, widget
 Requires at least: 4.0
 Tested up to: 4.5
-Stable tag: 0.13
+Stable tag: 0.14
 License: WTFPL – Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
@@ -50,6 +50,9 @@ None so far.
 
 == Changelog ==
 
+= 0.14 =
+* added uninstall.php in order to clean the database options after uninstall
+
 = 0.13 =
 * added header information neccessary for proper Wordpress localization
 * improved settings page
@@ -66,6 +69,9 @@ None so far.
 
 
 == Upgrade Notice ==
+
+= 0.14 =
+Upgrade if you like your database clean.
 
 = 0.13 =
 Upgrade if you plan to create locale files for YALW.

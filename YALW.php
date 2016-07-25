@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Yet Another Login Widget (YALW)
  * Description: This widget is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, done. Well, maybe not quite. You may want to modify the stylesheet a little bit to match your theme's needs...
- * Version: 0.13
+ * Version: 0.14
  * Author: Oliver Tacke
  * Author URI: http://www.olivertacke.de
  * Text Domain: YALW
@@ -199,4 +199,6 @@ add_action( 'init', 'YALW\init_widget' );
 
 if ( is_admin() ) {
 	$settings = new Settings;
+	//add_action( 'admin_menu', 'YALW\Settings::yalw_plugin_menu' );
+	//add_action( 'admin_init', 'YALW\Settings::register_settings' );
 }
