@@ -15,7 +15,7 @@ namespace YALW;
  */
 class Settings {
 
-/**
+	/**
      * Holds the values to be used in the fields callbacks
      */
     private $options;
