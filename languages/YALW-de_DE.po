@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YALW\n"
 "POT-Creation-Date: 2016-07-24 15:40+0200\n"
-"PO-Revision-Date: 2016-07-24 16:10+0200\n"
+"PO-Revision-Date: 2016-07-28 16:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 1.8.8\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -86,7 +86,7 @@ msgstr "Abmelden"
 
 #: display.php:271
 msgid "You do not have sufficient permissions to access this page."
-msgstr "Sie haben nicht die nötigen Rechte, um auf die Seite zuzugreifen."
+msgstr "Du hast nicht die nötigen Rechte, um auf die Seite zuzugreifen."
 
 #: display.php:281
 msgid "Text for the code reset mail"
@@ -99,7 +99,7 @@ msgid ""
 "replaced by the reset code and [admin_email] will be replaced by the admin's "
 "email address."
 msgstr ""
-"Hier können Sie die Nachricht eingeben, mit der der Reset Code verschickt "
+"Hier kannst du die Nachricht eingeben, mit der der Reset Code verschickt "
 "wird. [user_login] wird durch den Namen des Benutzers ersetzt, [reset_code] "
 "durch den Reset-Code und [admin_email] durch die E-Mail-Adresse des "
 "Administrators."
@@ -108,16 +108,16 @@ msgstr ""
 msgid ""
 "There seems to be a security issue. Please do not continue, but inform us!"
 msgstr ""
-"Es scheint ein Sicherheitsproblem zu geben. Bitte fahren Sie nicht fort, "
-"sondern informieren Sie uns!"
+"Es scheint ein Sicherheitsproblem zu geben. Bitte fahre nicht fort, sondern "
+"informiere uns!"
 
 #: handlers.php:35
 msgid "Please enter your username."
-msgstr "Bitte geben Sie Ihren Benutzernamen an."
+msgstr "Bitte gib deinen Benutzernamen an."
 
 #: handlers.php:41
 msgid "Please enter your password."
-msgstr "Bitte geben Sie Ihr Passwort an."
+msgstr "Bitte gib dein Passwort an."
 
 #: handlers.php:91
 msgid "Password reset is not allowed for this user"
@@ -129,12 +129,12 @@ msgstr ""
 msgid ""
 "You should have received an email with a reset code. Please check your inbox."
 msgstr ""
-"Sie sollten eine E-Mail mit einem Code zum Neusetzen Ihres Passworts "
-"erhalten haben. Bitte prüfen Sie Ihren Posteingang."
+"Du solltest eine E-Mail mit einem Code zum Neusetzen deines Passworts "
+"erhalten haben. Bitte prüfe deinen Posteingang."
 
 #: handlers.php:119
 msgid "Please enter your username or e-mail address."
-msgstr "Bitte geben Sie einen Benutzernamen oder eine E-Mail-Adresse an."
+msgstr "Bitte gib deinen Benutzernamen oder eine E-Mail-Adresse an."
 
 #: handlers.php:125
 msgid "There is no user registered with that email address."
@@ -152,32 +152,30 @@ msgid ""
 "An internal program error has occured. Your request cannot be complied with. "
 "Please inform us."
 msgstr ""
-"Es gab einen internen Programmfehler. Ihrer Bitte kann daher nicht "
-"entsprochen werden. Bitte informieren Sie uns."
+"Es gab einen internen Programmfehler. Deiner Bitte kann daher nicht "
+"entsprochen werden. Bitte informiere uns."
 
 #: handlers.php:193 handlers.php:364
 msgid ""
 "There seems to be a problem with our database. Sorry. Please try again later."
 msgstr ""
 "Offenbar gibt es ein Problem mit unserer Datenbank. Wir bitten um "
-"Entschuldigung. Bitte versuchen Sie es später noch einmal."
+"Entschuldigung. Bitte versuche es später noch einmal."
 
 #: handlers.php:200
 msgid "The e-mail could not be sent."
 msgstr ""
 "Möglicherweise gibt es gerade eine Störung des E-Mail-Versands. Wir bitten "
-"um Entschuldigung. Bitte kontaktieren Sie uns."
+"um Entschuldigung. Bitte kontaktiere uns."
 
 #: handlers.php:200
 msgid "Possible reason: your host may have disabled the mail() function."
-msgstr ""
-"Möglicherweise gibt es gerade eine Störung des E-Mail-Versands. Wir bitten "
-"um Entschuldigung. Bitte versuchen Sie es später erneut."
+msgstr "Möglicher Grund: Die mail()-Funktion ist deaktiviert worden."
 
 #: handlers.php:235
 #, php-format
 msgid "[%s] Password Reset"
-msgstr "[%s] Soll Ihr Passwort zurückgesetzt werden?"
+msgstr "[%s] Soll dein Passwort zurückgesetzt werden?"
 
 #: handlers.php:322
 msgid ""
@@ -190,12 +188,12 @@ msgstr ""
 #: handlers.php:388
 msgid "The code was wrong too often. Please get a new one."
 msgstr ""
-"Sie haben den Code zu oft falsch eingegeben. Bitte lassen Sie sich einen "
-"neuen zusenden."
+"Du hast den Code zu oft falsch eingegeben. Bitte lass dir einen neuen "
+"zusenden."
 
 #: handlers.php:400
 msgid "The code is wrong."
-msgstr "Der von Ihnen eingegebene Code stimmt nicht."
+msgstr "Der von dir eingegebene Code stimmt nicht."
 
 #: handlers.php:447
 msgid "I'm sorry, Dave. I'm afraid I can't do that."
@@ -203,11 +201,11 @@ msgstr "Es tut mir leid, Dave, aber das kann ich nicht tun."
 
 #: handlers.php:455
 msgid "The password cannot be empty."
-msgstr "Bitte geben Sie ein Passwort ein."
+msgstr "Bitte gib ein Passwort ein."
 
 #: handlers.php:459
 msgid "The passwords are not the same. Please re-enter."
-msgstr "Die Passwörter stimmen nicht überein. Bitte geben Sie sie erneut ein."
+msgstr "Die Passwörter stimmen nicht überein. Bitte gib sie erneut ein."
 
 #: handlers.php:492 handlers.php:499
 msgid "There seems to be something wrong with the username or password."
