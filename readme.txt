@@ -3,8 +3,8 @@ Contributors: otacke
 Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c0c/
 Tags: login, widget
 Requires at least: 4.0
-Tested up to: 4.5
-Stable tag: 0.14
+Tested up to: 4.6
+Stable tag: 0.15
 License: WTFPL – Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
@@ -50,6 +50,11 @@ None so far.
 
 == Changelog ==
 
+= 0.15 =
+* checked if YALW runs on Wordpress 4.6
+* revamped the German localization
+* fixed a bug with setting an individual email text
+
 = 0.14 =
 * added uninstall.php in order to clean the database options after uninstall
 
@@ -69,6 +74,9 @@ None so far.
 
 
 == Upgrade Notice ==
+
+= 0.15 =
+Upgrade if you need an individual message for emails sent to users for resetting a password.
 
 = 0.14 =
 Upgrade if you like your database clean.

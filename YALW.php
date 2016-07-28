@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Yet Another Login Widget (YALW)
  * Description: This widget is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, done. Well, maybe not quite. You may want to modify the stylesheet a little bit to match your theme's needs...
- * Version: 0.14
+ * Version: 0.15
  * Author: Oliver Tacke
  * Author URI: http://www.olivertacke.de
  * Text Domain: YALW
@@ -15,7 +15,7 @@
  * TODO: add password strength detector (maybe in a later version),
  *       see display.php/display_new_password_form() 
  */
- 
+
 /*
  * This widget rebuilds quite a bunch of features offered by wp-login.php instead
  * of using the features therein because it is hardly possible.
@@ -61,16 +61,15 @@ require_once( __DIR__ . '/settings.php' );
  */
 class YALW extends \WP_Widget {
 	/**
-	 * Sets up the widgets name etc
+     * Sets up the widgets name etc
 	 */
-	public function __construct() {
-		wp_enqueue_style( 'YALW', plugins_url( 'css/yalw.css', __FILE__ ) );
+    public function __construct() {
+        wp_enqueue_style( 'YALW', plugins_url( 'css/yalw.css', __FILE__ ) );
 		parent::__construct(
-			'YALW',
-			__( 'Yet Another Login Widget', 'YALW' ),
-			array( 'description' => __( 'A simple login widget', 'YALW' ), ) );
-	}
-
+                'YALW',
+                __( 'Yet Another Login Widget', 'YALW' ),
+                array( 'description' => __( 'A simple login widget', 'YALW' ), ) );
+    }
 	
 	/**
 	 * Output the content of the widget

@@ -103,12 +103,11 @@ class Settings {
      * @param array $input Contains all settings fields as array keys
      */
     public function sanitize( $input ) {
-        if( isset( $input['code_reset_email_text'] ) )
-            $new_input['code_reset_email_text'] = sanitize_text_field( $input['code_reset_email_text'] );
-
-        if( isset( $input['widget_rememberme'] ) )
+		if( isset( $input['widget_rememberme'] ) )
             $new_input['widget_rememberme'] = absint( $input['widget_rememberme'] );
-			
+		if( isset( $input['code_reset_email_text'] ) )
+            $filtered = wp_check_invalid_utf8( $input['code_reset_email_text'] );
+			$new_input['code_reset_email_text'] = wp_strip_all_tags( $filtered );
         return $new_input;
     }
 

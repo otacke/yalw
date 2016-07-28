@@ -319,8 +319,15 @@ class Handlers {
 			$reset_code = '';
 		}
 
-		$message = get_option( 'code_reset_email', __( 'Dear [user_login], please enter [reset_code] in the input field. You can set a new password afterwards.', 'YALW' ) );
-		 
+		// use individual message from options if set
+		$message = __( 'Dear [user_login], please enter [reset_code] in the input field. You can set a new password afterwards.', 'YALW' );
+		$options = get_option( 'yalw_option' );
+		if ( ! empty ( $options ) ) {
+			if ( ! empty ( trim( $options['code_reset_email_text'] ) ) ) {
+				$message = $options['code_reset_email_text'];
+			}
+		}
+
 		// replace the markers within the message text by appropriate values
 		$message = str_replace( '[user_login]', $user_login, $message );
 		$message = str_replace( '[reset_code]', $reset_code, $message );
