@@ -112,7 +112,7 @@ class Handlers {
 	 * @return WP_User|WP_Error WP_User if found, else WP_Error
 	 */
 	private static function get_user_data_by( $login_given ) {
-		// check whether a user can be found to the login data given by the user
+		// check whether a user can be found for the login data given by the user
 		$events = new \WP_Error();
 		if ( empty( $login_given ) ) {
 			do_action( 'lostpassword_post' );
@@ -216,7 +216,7 @@ class Handlers {
 		} else {
 			/*
 			 * The blogname option is escaped with esc_html on the way into the database
-			 * in sanitize_option we want to reverse this for the plain text arena of emails.
+			 * in sanitize_option we want to reverse this for the plain text area of emails.
 			 */
 			$blogname = wp_specialchars_decode( get_option( 'blogname' ), ENT_QUOTES );
 		}
@@ -319,7 +319,7 @@ class Handlers {
 			$reset_code = '';
 		}
 
-		// use individual message from options if set
+		// use individual message from options if set, else use a default message
 		$message = __( 'Dear [user_login], please enter [reset_code] in the input field. You can set a new password afterwards.', 'YALW' );
 		$options = get_option( 'yalw_option' );
 		if ( ! empty ( $options ) ) {
@@ -454,7 +454,6 @@ class Handlers {
 			return new \WP_Error( 'security' , __( 'I\'m sorry, Dave. I\'m afraid I can\'t do that.', 'YALW' ), 'error' );
 		}
 		$events = new \WP_Error();
-
 		
 		if ( empty( $_POST['YALW_new_password'] ) ) {
 			// password empty?

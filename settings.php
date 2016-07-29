@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Just in case we think of doing some fancy CSS stuff or mindblowing
  * JavaScript shit or whatever in the future, we give every item an id.

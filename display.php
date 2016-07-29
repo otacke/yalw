@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Just in case we think of doing some fancy CSS stuff or mindblowing
  * JavaScript shit or whatever in the future, we give every item an id.
@@ -24,13 +23,18 @@ class Display {
 	 * @param array $instance The settings for the particular instance of the widget	 
 	 */
 	static function display_widget_title( $user_login, $instance ) {
+		/*
+		 * TODO: Would it be better to let the user set a title? If yes, we
+		 * need to change this part and add an option to the settings
+		 * 
+		 */
 		if ( is_user_logged_in() ) {
 			$user_data = get_user_by( 'login', $user_login );
 			if ( ! $user_data ) {
 				$widget_title = esc_attr( __( 'Welcome', 'YALW' ) ) . '!';
 			} else {
 				if ( ( ! empty( $user_data->first_name ) )
-					&& ( ! empty( $user_data->last_name ) )
+						&& ( ! empty( $user_data->last_name ) )
 				) {
 					$widget_title = esc_attr( __( 'Welcome', 'YALW' ) ) . ' ' . 
 							$user_data->first_name . ' ' . $user_data->last_name . '!';
@@ -51,7 +55,6 @@ class Display {
 	/**
 	 * Display the login form
 	 */
-	 
 	static function display_login_form() {
 		echo '<div id="YALW_widget">';
 		echo '<form name="YALW_login_form" id="YALW_login_form" method="post" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '">';
@@ -178,7 +181,7 @@ class Display {
 		echo '<input type="submit" name="YALW_submit" id="YALW_submit_new_password" class="button button-primary button-large" value="' . esc_attr( __( 'Reset password and login', 'YALW' ) ) . '" />';
 		
 		/*
-		 * TODO: implement a password strength indicator
+		 * TODO: implement a password strength indicator (maybe)
 		 */
 		echo '</div>';
 		
