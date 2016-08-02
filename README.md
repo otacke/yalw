@@ -10,3 +10,15 @@ integrated some day. I need to get shit done. And, more importantly, I don't con
 with such a crucial part of Wordpress.
 
 Thanks to [edik](https://profiles.wordpress.org/plocha/ "edik") for his support and to [akoww](https://github.com/akoww) for fixing bugs!
+
+## Details
+* Allows to configure the email message that is sent to reset a lost password.
+* Can use fail2ban to detect failed login attempts and act accordingly. A sample filter and a sample jail description are included.
+* Is localizable.
+
+## Screenshots
+On the right you can see the YALW widget for login on a plain Twentysixteen theme.
+![login widget](https://github.com/otacke/yalw/blob/master/assets/screenshot-1.png "login widget")
+
+You can configure an individual email message that is sent to reset a lost password.
+![settings](https://github.com/otacke/yalw/blob/master/assets/screenshot-2.png "settings")
