@@ -1,4 +1,4 @@
-![banner](https://github.com/otacke/yalw/blob/master/assets/yalw_banner_800.png "banner")
+![banner](https://github.com/otacke/yalw/blob/master/assets/yalw_banner_1920.png "banner")
 
 #YALW
 YALW is a simple Wordpress widget and allows you to handle logins and password retrieval without a separate login screen.
