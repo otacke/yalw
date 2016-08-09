@@ -25,5 +25,11 @@ YALW rebuilds quite a bunch of features offered by wp-login.php instead of using
 
 Thanks to [edik](https://profiles.wordpress.org/plocha/ "edik") for his support and to [akoww](https://github.com/akoww) for fixing bugs!
 
+## History
+_Who’s Yalw, you ask?_
+
+Back in the ancient days of Northern Europe, everybody knew Yalw — although Allfather Odin was not too happy about that. Yalw is the bastard stepbrother of Thor. He works as an underpaid intern for Heimdall, guarding the Bifröst. You should definitely look that up in the Edda :-)
+Well, because mighty Yalw guards the realm of Asgard so bravely, I named this piece of software after him. Beware of those who tell you that I just named it Yet Another Login Widget!
+
 ## License
 YALW is is licensed under the [DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE](http://www.wtfpl.net).
