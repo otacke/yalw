@@ -2,19 +2,20 @@
 /**
  * Plugin Name: Yet Another Login Widget (YALW)
  * Description: This widget is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, done. Well, maybe not quite. You may want to modify the stylesheet a little bit to match your theme's needs...
- * Version: 0.11
+ * Version: 0.15
  * Author: Oliver Tacke
  * Author URI: http://www.olivertacke.de
+ * Text Domain: YALW
+ * Domain Path: /languages/
  * License: WTFPL
  * License URI: http://www.wtfpl.net/about/
  *
  * TODO: implement sending all messages with error status to the admin
  *       (maybe in a later version)
- * TODO: make the Widget customizable via options (maybe in a later version)
  * TODO: add password strength detector (maybe in a later version),
  *       see display.php/display_new_password_form() 
  */
- 
+
 /*
  * This widget rebuilds quite a bunch of features offered by wp-login.php instead
  * of using the features therein because it is hardly possible.
@@ -28,7 +29,8 @@
  * And, more importantly, I don't consider myself a good programmer. It's
  * probably not advisable for me to tinker with such a crucial part of Wordpress.
  *
- * Thanks to edik [https://profiles.wordpress.org/plocha/] for his support!
+ * Thanks to edik [https://profiles.wordpress.org/plocha/] for his support and
+ * to akoww [https://github.com/akoww] for fixing bugs!
  */
 
 namespace YALW;
@@ -36,7 +38,7 @@ namespace YALW;
 // As suggested by the Wordpress Community
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-// display.php contains all functions for sending output the the browser
+// display.php contains all functions for sending widget output the the browser
 require_once( __DIR__ . '/display.php' );
 
 // handlers.php contains all general handler functions and their sub fuctions
@@ -44,6 +46,9 @@ require_once( __DIR__ . '/handlers.php' );
 
 // session.php contains all functions to control the session
 require_once( __DIR__ . '/session.php' );
+
+// settings.php contains all functions for the YALW settings
+require_once( __DIR__ . '/settings.php' );
 
 /**
  * Main class.
@@ -56,16 +61,15 @@ require_once( __DIR__ . '/session.php' );
  */
 class YALW extends \WP_Widget {
 	/**
-	 * Sets up the widgets name etc
+     * Sets up the widgets name etc
 	 */
-	public function __construct() {
-		wp_enqueue_style( 'YALW', plugins_url( 'css/yalw.css', __FILE__ ) );
+    public function __construct() {
+        wp_enqueue_style( 'YALW', plugins_url( 'css/yalw.css', __FILE__ ) );
 		parent::__construct(
-			'YALW',
-			__( 'Yet Another Login Widget', 'YALW' ),
-			array( 'description' => __( 'A simple login widget', 'YALW' ), ) );
-	}
-
+                'YALW',
+                __( 'Yet Another Login Widget', 'YALW' ),
+                array( 'description' => __( 'A simple login widget', 'YALW' ), ) );
+    }
 	
 	/**
 	 * Output the content of the widget
@@ -185,26 +189,6 @@ function init_widget() {
 	control_login();
 }
 
-/**
- * add the menu item for YALW
- */
-function yalw_plugin_menu() {
-	add_options_page(
-			'YALW Options',
-			'YALW',
-			'manage_options',
-			'YALW-OPTIONS',
-			'YALW\Display::yalw_plugin_options'
-		);
-}
-
-/**
- * register the settings for YALW
- */
-function register_settings() {
-	register_setting( 'yalwoption-group', 'code_reset_email' );
-}
-
 // Let's add some action :-)
 add_action( 'widgets_init', 'YALW\register_YALW_widget' );
 add_action( 'init', 'YALW\Session::start_session', 1 );
@@ -213,7 +197,5 @@ add_action( 'wp_login', 'YALW\Session::end_session' );
 add_action( 'init', 'YALW\init_widget' );
 
 if ( is_admin() ) {
-	add_action( 'admin_menu', 'YALW\yalw_plugin_menu' );
-	add_action( 'admin_init', 'YALW\register_settings' );
+	$settings = new Settings;
 }
-?>

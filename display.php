@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Just in case we think of doing some fancy CSS stuff or mindblowing
  * JavaScript shit or whatever in the future, we give every item an id.
@@ -11,7 +10,7 @@ namespace YALW;
  * Display functions for the widget 
  *
  * @package YALW
- * @since 0.4
+ * @since 0.5
  */
 class Display {
 	/**
@@ -24,13 +23,18 @@ class Display {
 	 * @param array $instance The settings for the particular instance of the widget	 
 	 */
 	static function display_widget_title( $user_login, $instance ) {
+		/*
+		 * TODO: Would it be better to let the user set a title? If yes, we
+		 * need to change this part and add an option to the settings
+		 * 
+		 */
 		if ( is_user_logged_in() ) {
 			$user_data = get_user_by( 'login', $user_login );
 			if ( ! $user_data ) {
 				$widget_title = esc_attr( __( 'Welcome', 'YALW' ) ) . '!';
 			} else {
 				if ( ( ! empty( $user_data->first_name ) )
-					&& ( ! empty( $user_data->last_name ) )
+						&& ( ! empty( $user_data->last_name ) )
 				) {
 					$widget_title = esc_attr( __( 'Welcome', 'YALW' ) ) . ' ' . 
 							$user_data->first_name . ' ' . $user_data->last_name . '!';
@@ -51,7 +55,6 @@ class Display {
 	/**
 	 * Display the login form
 	 */
-	 
 	static function display_login_form() {
 		echo '<div id="YALW_widget">';
 		echo '<form name="YALW_login_form" id="YALW_login_form" method="post" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '">';
@@ -68,16 +71,17 @@ class Display {
 		echo '</div>';
 
 		echo '<div class="YALW_label_container"><label id="YALW_user_password_label" for="YALW_user_password" class="YALW_label">' . esc_attr( __( 'Password', 'YALW' ) ) . '</label></div>';
-		echo '<div class="YALW_input_container"><input type="password" name="YALW_user_password" id="YALW_user_password" class="YALW_input" size="20" required="required"/></div>';
+		echo '<div class="YALW_input_container"><input type="password" name="YALW_user_password" id="YALW_user_password" class="YALW_input" size="20" required="required" autocomplete="off" /></div>';
 		
 		do_action( 'login_form' );
 		
-		// TODO: make this option configurable via options
-		/*
-		echo '<div id="YALW_rememberme_container">';
-		echo '<label id="YALW_rememberme_label" for="YALW_rememberme" class="YALW_label"><input name="YALW_rememberme" type="checkbox" id="YALW_rememberme" value="forever" /> ' . esc_attr( __( 'Remember Me', 'YALW') ) . '</label>';
-		echo '</div>';
-		 */
+		// show option to remember the user after login if chosen in settings
+		$options = get_option( 'yalw_option' );
+		if ( isset( $options['widget_rememberme'] ) && $options['widget_rememberme'] == 1 ) {
+			echo '<div id="YALW_rememberme_container">';
+			echo '<label id="YALW_rememberme_label" for="YALW_rememberme" class="YALW_label"><input name="YALW_rememberme" type="checkbox" id="YALW_rememberme" value="forever" /> ' . esc_attr( __( 'Remember Me', 'YALW') ) . '</label>';
+			echo '</div>';
+		}
 		
 		echo '<div class="YALW_submit_container">';
 		echo '<input type="submit" name="YALW_submit" id="YALW_submit_login" class="button button-primary button-large" value="' . esc_attr( __( 'Login', 'YALW' ) ). '" />';
@@ -162,7 +166,7 @@ class Display {
 		echo '</div>';
 		
 		echo '<div class="YALW_input_container">';
-		echo '<input type="password" name="YALW_new_password" id="YALW_new_password" class="YALW_input" size="20" required="required"/>';
+		echo '<input type="password" name="YALW_new_password" id="YALW_new_password" class="YALW_input" size="20" required="required" autocomplete="off" />';
 		echo '</div>';
 
 		echo '<div class="YALW_label_container">';
@@ -170,14 +174,14 @@ class Display {
 		echo '</div>';
 		
 		echo '<div class="YALW_input_container">';
-		echo '<input type="password" name="YALW_control_password" id="YALW_control_password" class="YALW_input" size="20" required="required" />';
+		echo '<input type="password" name="YALW_control_password" id="YALW_control_password" class="YALW_input" size="20" required="required" autocomplete="off" />';
 		echo '</div>';
 		
 		echo '<div class="YALW_submit_container">';
 		echo '<input type="submit" name="YALW_submit" id="YALW_submit_new_password" class="button button-primary button-large" value="' . esc_attr( __( 'Reset password and login', 'YALW' ) ) . '" />';
 		
 		/*
-		 * TODO: implement a password strength indicator
+		 * TODO: implement a password strength indicator (maybe)
 		 */
 		echo '</div>';
 		
@@ -208,7 +212,7 @@ class Display {
 	private static function display_error_messages() {
 		$events = Session::get_events();
 		if ( ( ! empty( $events ) ) && ( is_wp_error( $events ) ) ) {
-			$notifications = Display::sort_events( $events );
+			$notifications = Display::prepare_events_for_display( $events );
 			foreach ( $notifications as $type => $message ) {
 				if ( ! empty( $message ) ) {
 					echo '<div id="YALW_' . $type . '" class="YALW_' . $type . '_container">' . apply_filters( 'login_errors', $message ) . "</div>\n";
@@ -224,7 +228,7 @@ class Display {
 	 * @param WP_Error $events the events
 	 * @return array array sorted by types
 	 */
-	private static function sort_events( $events ) {
+	private static function prepare_events_for_display( $events ) {
 		/*
 		 * in future versions, this might possibly become more elegant as the
 		 * event types could also be made flexible, not hard coded
@@ -261,36 +265,4 @@ class Display {
 		}
 		return array( 'exceptions' => $exceptions, 'warnings' => $warnings, 'information' => $information );
 	}
-
-	/**
-	 * display the YALW settings page
-	 */
-	function yalw_plugin_options() {
-		if ( !current_user_can( 'manage_options' ) )  {
-			wp_die( __( 'You do not have sufficient permissions to access this page.', 'YALW' ) );
-		}
-		
-		echo '<div class="wrap">';
-		echo '<h2>YALW</h2>';
-		echo '<form method="post" action="options.php"> ';
-		settings_fields( 'yalwoption-group' );
-		do_settings_sections( 'yalwmyoption-group' );
-		echo '<table class="form-table">';
-		echo '<tr valign="top">';
-		echo '<th scope="row">' . esc_attr( __( 'Text for the code reset mail', 'YALW' ) ) . '</th>';
-		echo '<td>';
-		echo '<p>';
-		echo '<label for="code_reset_email">';
-		echo __( 'Here you can enter the message that will be mailed for delivering the reset code. [user_login] will be replaced by the user\'s name, [reset_code] will be replaced by the reset code and [admin_email] will be replaced by the admin\'s email address.', 'YALW' );
-		echo '</label>';
-		echo '</p>';
-		echo '<p><textarea name="code_reset_email" rows="10" cols="50" id="code_reset_email" class="large-text code">' . get_option( 'code_reset_email' ) . '</textarea></p>';
-		echo '</td>';
-		echo '</tr>';
-		echo '</table>';
-		submit_button();
-		echo '</form>';
-		echo '</div>';
-}	
 }
-?>

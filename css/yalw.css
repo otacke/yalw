@@ -150,6 +150,13 @@
 #YALW_information {
 }
 
+/* Settings Page */
+#widget_rememberme {
+}
+
+#code_reset_email_text {
+}
+
 /* Informational Messages (green) */
 .YALW_information_container {
 	padding: 1em 1.1em 1em 1.1em;

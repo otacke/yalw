@@ -10,7 +10,7 @@ namespace YALW;
  * get- and set-methods. Then again, I think that some function names make
  * the codes logic more clear than assigning values to session variables.
  *
- * Keys uses during session handling:
+ * Keys used during session handling:
  * - action           = (string) task to be performed by Display
  * - events           = (WP_Error) notifications for the user
  * - user_login       = (string) login given, later login retrieved from WP database 
@@ -18,7 +18,7 @@ namespace YALW;
  * - code_error_count = (integer) amount of unsuccessful code entries
  *
  * @package YALW
- * @since 0.4
+ * @since 0.5
  */
 class Session {
 	/**
@@ -26,6 +26,15 @@ class Session {
 	 */
 	public static function start_session() {
 		if ( ! session_id() ) {
+			// set HttpOnly flag to prevent scripts from accessing the cookie
+			$cookie_params = session_get_cookie_params();
+			session_set_cookie_params  (
+					$cookie_params['lifetime'],
+					$cookie_params['path'],
+					$cookie_params['domain'],
+					$cookie_params['secure'],
+					true ); // httponly
+		
 			session_start();
 		}
 	}
@@ -188,5 +197,3 @@ class Session {
 		unset( $_SESSION['code_error_count'] );
 	}
 }
-
-?>
