@@ -28,7 +28,7 @@ class Handlers {
 		if ( ! Handlers::is_nonce_ok( 'login_form' ) ) {
 			return new \WP_Error( 'nonce' , __( 'There seems to be a security issue. Please do not continue, but inform us!', 'YALW' ), 'error' );
 		}
-		
+
 		$events = new \WP_Error();
 		// empty username
 		if ( empty( $_POST['YALW_user_login'] ) ) {
@@ -56,7 +56,7 @@ class Handlers {
 		}
 		return $events;
 	}
-	
+
 	/**
 	 * handle the password retrieval procedure
 	 *
@@ -71,7 +71,7 @@ class Handlers {
 		if ( ! Handlers::is_nonce_ok( 'code_retrieval_form' ) ) {
 			return new \WP_Error( 'nonce' , __( 'There seems to be a security issue. Please do not continue, but inform us!', 'YALW' ), 'error' );
 		}
-		
+
 		Session::set_user_login( trim ( $_POST['YALW_user_login'] ) );
 
 		$user_data = Handlers::get_user_data_by( Session::get_user_login() );
@@ -80,7 +80,7 @@ class Handlers {
 		}
 
 		do_action( 'retrieve_password', $user_data->user_login );
-	 	 
+
 		/*
 		 * check if the user may reset his or her password
 		 * the range of possible return types of apply_filters makes it useless
@@ -92,7 +92,7 @@ class Handlers {
 		else if ( is_wp_error( $allowed ) ) {
 			return $allowed;
 		}
-			
+
 		$send_status = Handlers::send_reset_code( $user_data );
 		if ( is_wp_error ( $send_status ) ) {
 			return $send_status;
@@ -135,7 +135,7 @@ class Handlers {
 		}
 		return $user_data;
 	}
-	
+
 	/**
 	 * Generate a random key and insert its hash value into the database in
 	 * order to allow a passwort reset.
@@ -152,25 +152,25 @@ class Handlers {
 		if ( ! $user_data instanceof \WP_User ) {
 			return false;
 		}
-		
+
 		$user_login = $user_data->user_login;
 		$key        = wp_generate_password( 20, false );
-		
+
 		do_action( 'retrieve_password_key', $user_login, $key );
-		
+
 		if ( empty( $wp_hasher ) ) {
 			require_once ( ABSPATH . WPINC . '/class-phpass.php' );
 			$wp_hasher = new \PasswordHash( 8, true );
 		}
 		$hashed = $wp_hasher->HashPassword( $key );
-		
+
 		if ( $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user_login ) ) == true ) {
 			return $key;
 		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Send a password reset code via email
 	 *
@@ -184,16 +184,16 @@ class Handlers {
 		if ( ! Handlers::get_retrieval_key ( $user_data ) ) {
 			return new \WP_Error( 'internal_error', __( 'An internal program error has occured. Your request cannot be complied with. Please inform us.', 'YALW' ), 'error' );
 		}
-		
+
 		$blogname = Handlers::get_blogname();
 		$title    = Handlers::create_mail_title( $blogname );
 		$db_code  = Handlers::get_retrieval_code( $user_data->user_login );
 		if ( empty( $db_code ) ) {
 			// could not get the code from the database
 			return new \WP_error( 'unknown_error' , __( 'There seems to be a problem with our database. Sorry. Please try again later.', 'YALW' ), 'error' );
-		}		
+		}
 		$message  = Handlers::get_password_retrieval_message( $user_data->user_login, $db_code );
-		
+
 		if ( ! wp_mail( $user_data->user_email, wp_specialchars_decode( $title ), $message ) ) {
 			return new \WP_error(
 					'email_not_sent' ,
@@ -204,7 +204,7 @@ class Handlers {
 			return true;
 		}
 	}
-	
+
 	/**
 	 * get the blog's name
 	 *
@@ -233,14 +233,14 @@ class Handlers {
 			$blogname = '';
 		}
 		$title = sprintf( __( '[%s] Password Reset', 'YALW' ), $blogname );
-		$title = apply_filters( 'retrieve_password_title', $title );		
+		$title = apply_filters( 'retrieve_password_title', $title );
 		return $title;
 	}
-	
+
 	/**
 	 * get the code from the user activation key stored in the database
 	 *
-	 * @global WordPress Database Access Abstraction Object $wpdb Wordpress database	 
+	 * @global WordPress Database Access Abstraction Object $wpdb Wordpress database
 	 *
 	 * @param string $user_login user's login name
 	 */
@@ -276,15 +276,15 @@ class Handlers {
 		} elseif ( $seed == '') {
 			$seed = mt_rand();
 		}
-		
+
 		if ( ! is_int( $length ) ) {
 			$length = 16;
 		} else {
 			$length = min( max( 1, $length ), 40 );
 		}
-		
+
 		$code_raw = substr( sha1( $seed ), 0, $length );
-		
+
 		if ( ! is_string( $delimiter ) ) {
 			$delimiter = '-';
 		}
@@ -303,7 +303,7 @@ class Handlers {
 			return $code_raw;
 		}
 	}
-	
+
 	/**
 	 * generate the code reset message
 	 *
@@ -323,7 +323,8 @@ class Handlers {
 		$message = __( 'Dear [user_login], please enter [reset_code] in the input field. You can set a new password afterwards.', 'YALW' );
 		$options = get_option( 'yalw_option' );
 		if ( ! empty ( $options ) ) {
-			if ( ! empty ( trim( $options['code_reset_email_text'] ) ) ) {
+			$tmp =  trim( $options['code_reset_email_text'] );
+			if ( ! empty ( $tmp ) ) {
 				$message = $options['code_reset_email_text'];
 			}
 		}
@@ -332,10 +333,10 @@ class Handlers {
 		$message = str_replace( '[user_login]', $user_login, $message );
 		$message = str_replace( '[reset_code]', $reset_code, $message );
 		$message = str_replace( '[admin_email]', get_option( 'admin_email' ), $message );
-		
+
 		return $message;
 	}
-	
+
 	/**
 	 * handle the password reset code entry after sending an email with the code to the user
 	 *
@@ -357,17 +358,17 @@ class Handlers {
 		// Prevent Cross-Site-Request-Forgery
 		if ( ! Handlers::is_nonce_ok( 'code_entry_form' ) ) {
 			return new \WP_Error( 'nonce' , __( 'There seems to be a security issue. Please do not continue, but inform us!', 'YALW' ), 'error' );
-		}	
+		}
 		$MAX_CODE_RETRIES = 2;
 
 		$user_login = Session::get_user_login();
 		$events = new \WP_Error();
-		
+
 		// get the code from the user activation key stored in the database
 		$db_code = Handlers::get_retrieval_code( $user_login );
 		if ( empty( $db_code ) ) {
 			// could not get the code from the database
-			Session::set_next_widget_task( 'check_code' );			
+			Session::set_next_widget_task( 'check_code' );
 			$events->add( 'unknown_error' , __( 'There seems to be a problem with our database. Sorry. Please try again later.', 'YALW' ), 'error' );
 		} elseif ( $_POST['YALW_code'] != $db_code ) {
 			Session::increment_code_error_count();
@@ -375,7 +376,7 @@ class Handlers {
 			if ( Session::get_code_error_count() > $MAX_CODE_RETRIES ) {
 				// maximum retries exceeded, set new code
 				Handlers::set_random_reset_code( $user_login );
-				
+
 				/*
 				 * We log the fact that the code was entered wrong too often. Too many of these
 				 * entries in the logfile, e. g. three within a certain period of time, can be used
@@ -383,13 +384,13 @@ class Handlers {
 				 * "brute force" the plugin.
 				 */
 				 \openlog( 'yalw(' . $_SERVER['HTTP_HOST'] . ')', LOG_NDELAY|LOG_PID, LOG_AUTH );
-				 \syslog( LOG_NOTICE, "Code reset failure for $user_login from " . Handlers::get_remote_address() );				
-				
+				 \syslog( LOG_NOTICE, "Code reset failure for $user_login from " . Handlers::get_remote_address() );
+
 				/*
 				 * From a security driven point of view, we could erase the
 				 * username in the session so the user must reenter it -- we
 				 * don't for the sake of usability.
-				 */				
+				 */
 				Session::clean_code_error_count();
 				Session::set_next_widget_task( 'retrieve_code' );
 				$events->add( 'code_reset' , __( 'The code was wrong too often. Please get a new one.', 'YALW' ), 'warn' );
@@ -414,7 +415,7 @@ class Handlers {
 		}
 		return $events;
 	}
-	
+
 	/**
 	 * set a new random reset code after too many attempts to enter the code
 	 *
@@ -424,16 +425,16 @@ class Handlers {
 	 */
 	private static function set_random_reset_code( $user_login ) {
 		global $wpdb;
-		
-		if ( ! is_string( $user_login ) ) {			
+
+		if ( ! is_string( $user_login ) ) {
 		} else {
 			$wpdb->update(
 					$wpdb->users,
 					array( 'user_activation_key' => mt_rand() ),
-					array( 'user_login' => $user_login ) );		
+					array( 'user_login' => $user_login ) );
 		}
 	}
-	
+
 	/**
 	 * reset the password and sign the user on
 	 *
@@ -454,7 +455,7 @@ class Handlers {
 			return new \WP_Error( 'security' , __( 'I\'m sorry, Dave. I\'m afraid I can\'t do that.', 'YALW' ), 'error' );
 		}
 		$events = new \WP_Error();
-		
+
 		if ( empty( $_POST['YALW_new_password'] ) ) {
 			// password empty?
 			Session::set_next_widget_task( 'enter_new_password' );
@@ -493,15 +494,10 @@ class Handlers {
 			$rememberme = false;
 		}
 
-		// These lines are needed for working with BuddyPress
-		if ( ! username_exists( $login ) ) {
-			return new \WP_Error( 'login_failure', __( 'There seems to be something wrong with the username or password.', 'YALW' ), 'warn' );
-		}
-		
 		$YALW_credentials = array( 'user_login' => $login, 'user_password' => $password, 'remember' => $rememberme );
 		$user = wp_signon( $YALW_credentials, true );
 
-		if ($user instanceof \WP_Error ) {		
+		if ($user instanceof \WP_Error ) {
 			return new \WP_Error( 'login_failure', __( 'There seems to be something wrong with the username or password.', 'YALW' ), 'warn' );
 		} else{
 			wp_set_auth_cookie( $user->ID );
@@ -524,7 +520,7 @@ class Handlers {
 			return str_replace( array( '?action=retrieve_code', '&action=retrieve_code' ), '', $uri );
 		}
 	}
-	
+
 	/**
 	 * Get YALW event type from WP_Error severity
 	 *
@@ -541,7 +537,7 @@ class Handlers {
 	 *
 	 * @param WP_Error $error error to be checked
 	 * @returns string info|warn 'info' if WP_Error's message, else 'warn'
-	 */	
+	 */
 	private static function get_event_type( $error ) {
 		if ( ! $error instanceof \WP_Error ) {
 			return 'info';
@@ -552,14 +548,14 @@ class Handlers {
 			return 'warn';
 		}
 	}
-	
+
 	/**
 	 * check if a nonce is OK
 	 *
 	 * can be used to prevent Cross-Site-Request-Forgery
 	 *
 	 * @param string $action Action name that should have given the context to what is taking place
-	 * @param string $name Nonce name	 
+	 * @param string $name Nonce name
 	 * @return boolean true, if everything was OK, else false
 	 */
 	private static function is_nonce_ok( $action = '-1', $name = 'yalw_nonce' ) {
@@ -586,7 +582,7 @@ class Handlers {
 	 * accidentally.
 	 *
 	 * @return String IP address the user uses
-	 */	
+	 */
 	private static function get_remote_address() {
 		if ( defined( 'WP_FAIL2BAN_PROXIES' ) ) {
 			if ( array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER ) ) {
@@ -602,7 +598,7 @@ class Handlers {
 					}
 					if ( ( $ip & $mask ) == $net ) {
 						if ( ( $len = strpos( $_SERVER['HTTP_X_FORWARDED_FOR'], ',' ) ) === false ) {
-							return $_SERVER['HTTP_X_FORWARDED_FOR']; 
+							return $_SERVER['HTTP_X_FORWARDED_FOR'];
 						} else {
 							return substr( $_SERVER['HTTP_X_FORWARDED_FOR'], 0, $len );
 						}
