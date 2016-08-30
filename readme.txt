@@ -4,7 +4,7 @@ Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c
 Tags: login, widget
 Requires at least: 4.0
 Tested up to: 4.6
-Stable tag: 0.15
+Stable tag: 0.16
 License: WTFPL – Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
@@ -49,6 +49,9 @@ None so far.
 2. You can configure an individual email message that is sent to reset a lost password.
 
 == Changelog ==
+
+= 0.16 =
+* fixed a bug that can occur with PHP versions prior to 5.5
 
 = 0.15 =
 * checked if YALW runs on Wordpress 4.6
