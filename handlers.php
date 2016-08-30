@@ -494,6 +494,11 @@ class Handlers {
 			$rememberme = false;
 		}
 
+		// These lines are needed for working with BuddyPress
+		if ( ! username_exists( $login ) ) {
+			return new \WP_Error( 'login_failure', __( 'There seems to be something wrong with the username or password.', 'YALW' ), 'warn' );
+		}
+
 		$YALW_credentials = array( 'user_login' => $login, 'user_password' => $password, 'remember' => $rememberme );
 		$user = wp_signon( $YALW_credentials, true );
 
