@@ -78,6 +78,9 @@ None so far.
 
 == Upgrade Notice ==
 
+= 0.16 =
+Upgrade if you use PHP prior to version 5.5.
+
 = 0.15 =
 Upgrade if you need an individual message for emails sent to users for resetting a password.
 
