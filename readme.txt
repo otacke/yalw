@@ -4,8 +4,8 @@ Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c
 Tags: login, widget
 Requires at least: 4.0
 Tested up to: 4.7
-Stable tag: 0.16
-License: WTFPL – Do What the Fuck You Want to Public License
+Stable tag: 0.16.1
+License: WTFPL - Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
 This widget is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, done.
