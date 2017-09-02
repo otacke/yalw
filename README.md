@@ -8,6 +8,9 @@ YALW is a simple Wordpress widget and allows you to handle logins and password r
 * Can use fail2ban to detect failed login attempts and act accordingly. A sample filter and a sample jail description are included.
 * Is localizable.
 
+## Support me at patreon!
+If you like what I do, please consider to become my supporter at patreon: https://www.patreon.com/otacke
+
 ## Install/Usage
 Install YALW from [Wordpress Plugin directory](https://wordpress.org/plugins/yalw/) or via your Wordpress instance, add widget to your theme, done. Well, maybe not quite. You may want to modify the stylesheet a little bit to match your theme's needs or to set an individual message for password retrieval... But that's it.
 
