@@ -4,7 +4,7 @@ Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c
 Tags: login, widget, authentification
 Requires at least: 4.0
 Tested up to: 4.9
-Stable tag: 0.16.1
+Stable tag: 0.16.2
 License: WTFPL - Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
 
