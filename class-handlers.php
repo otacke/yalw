@@ -41,14 +41,14 @@ class Handlers {
 			$events->add( 'empty_password' , __( 'Please enter your password.', 'YALW' ), 'warn' );
 		}
 		// username/password mismatch
-		if ( ( ! empty ( $_POST['YALW_user_login'] ) ) && ( ! empty ( $_POST['YALW_user_password'] ) )) {
-			if ( empty ( $_POST['YALW_rememberme'] ) ) {
+		if ( ( ! empty( $_POST['YALW_user_login'] ) ) && ( ! empty( $_POST['YALW_user_password'] ) )) {
+			if ( empty( $_POST['YALW_rememberme'] ) ) {
 				$_POST['YALW_rememberme'] = '';
 			}
 			$tmp_error = Handlers::sign_on (
 					$_POST['YALW_user_login'],
 					$_POST['YALW_user_password'],
-					( $_POST['YALW_rememberme'] == 'forever' ) ? true : false );
+					( $_POST['YALW_rememberme'] === 'forever' ) ? true : false );
 			$events->add(
 					$tmp_error->get_error_code(),
 					$tmp_error->get_error_message(),
@@ -72,7 +72,7 @@ class Handlers {
 			return new \WP_Error( 'nonce' , __( 'There seems to be a security issue. Please do not continue, but inform us!', 'YALW' ), 'error' );
 		}
 
-		Session::set_user_login( trim ( $_POST['YALW_user_login'] ) );
+		Session::set_user_login( trim( $_POST['YALW_user_login'] ) );
 
 		$user_data = Handlers::get_user_data_by( Session::get_user_login() );
 		if ( is_wp_error( $user_data ) ) {
@@ -94,7 +94,7 @@ class Handlers {
 		}
 
 		$send_status = Handlers::send_reset_code( $user_data );
-		if ( is_wp_error ( $send_status ) ) {
+		if ( is_wp_error( $send_status ) ) {
 			return $send_status;
 		}
 
@@ -164,11 +164,11 @@ class Handlers {
 		}
 		$hashed = $wp_hasher->HashPassword( $key );
 
-		if ( $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user_login ) ) == true ) {
+		if ( $wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user_login ) ) === true ) {
 			return $key;
-		} else {
-			return false;
 		}
+
+		return false;
 	}
 
 	/**
@@ -199,10 +199,10 @@ class Handlers {
 					'email_not_sent' ,
 					__( 'The e-mail could not be sent.', 'YALW' ) . '<br />' . __( 'Possible reason: your host may have disabled the mail() function.', 'YALW' ),
 					'error' );
-		} else {
-			Session::clean_code_error_count();
-			return true;
 		}
+
+		Session::clean_code_error_count();
+		return true;
 	}
 
 	/**
@@ -246,7 +246,7 @@ class Handlers {
 	 */
 	private static function get_retrieval_code( $user_login ){
 		global $wpdb;
-		if ( ! is_string ( $user_login ) ) {
+		if ( ! is_string( $user_login ) ) {
 			return null;
 		}
 		$code_query = $wpdb->prepare(
@@ -273,7 +273,7 @@ class Handlers {
 	private static function generate_pin_code( $seed = '', $length = 16, $delimiter = '-' ) {
 		if ( ! is_string( $seed ) ) {
 			$seed = '';
-		} elseif ( $seed == '') {
+		} elseif ( $seed === '' ) {
 			$seed = mt_rand();
 		}
 
@@ -290,18 +290,18 @@ class Handlers {
 		}
 
 		// add a delimiter inside the pin code if it's set
-		if ( $delimiter != '' ) {
+		if ( $delimiter !== '' ) {
 			$code = '';
 			for ( $i = 0; $i < $length; $i++ ) {
 				$code .= substr( $code_raw, $i, 1 );
-				if ( ( ($i+1)%4 == 0 ) && ( $i != $length-1 ) ) {
+				if ( ( ($i+1)%4 === 0 ) && ( $i !== $length-1 ) ) {
 					$code .= $delimiter;
 				}
 			}
 			return $code;
-		} else {
-			return $code_raw;
 		}
+
+		return $code_raw;
 	}
 
 	/**
@@ -322,9 +322,9 @@ class Handlers {
 		// use individual message from options if set, else use a default message
 		$message = __( 'Dear [user_login], please enter [reset_code] in the input field. You can set a new password afterwards.', 'YALW' );
 		$options = get_option( 'yalw_option' );
-		if ( ! empty ( $options ) ) {
+		if ( ! empty( $options ) ) {
 			$tmp =  trim( $options['code_reset_email_text'] );
-			if ( ! empty ( $tmp ) ) {
+			if ( ! empty( $tmp ) ) {
 				$message = $options['code_reset_email_text'];
 			}
 		}
@@ -370,7 +370,7 @@ class Handlers {
 			// could not get the code from the database
 			Session::set_next_widget_task( 'check_code' );
 			$events->add( 'unknown_error' , __( 'There seems to be a problem with our database. Sorry. Please try again later.', 'YALW' ), 'error' );
-		} elseif ( $_POST['YALW_code'] != $db_code ) {
+		} elseif ( $_POST['YALW_code'] !== $db_code ) {
 			Session::increment_code_error_count();
 
 			if ( Session::get_code_error_count() > $MAX_CODE_RETRIES ) {
@@ -451,7 +451,7 @@ class Handlers {
 			return new \WP_Error( 'nonce' , __( 'There seems to be a security issue. Please do not continue, but inform us!', 'YALW' ), 'error' );
 		}
 		// Prevent user's from obtaining rights of other users
-		if ( Handlers::get_retrieval_code( Session::get_user_login() ) != $_POST['YALW_code'] ) {
+		if ( Handlers::get_retrieval_code( Session::get_user_login() ) !== $_POST['YALW_code'] ) {
 			return new \WP_Error( 'security' , __( 'I\'m sorry, Dave. I\'m afraid I can\'t do that.', 'YALW' ), 'error' );
 		}
 		$events = new \WP_Error();
@@ -460,7 +460,7 @@ class Handlers {
 			// password empty?
 			Session::set_next_widget_task( 'enter_new_password' );
 			$events->add( 'password_empty' , __( 'The password cannot be empty.', 'YALW' ), 'warn' );
-		} elseif ( $_POST['YALW_new_password'] != $_POST['YALW_control_password'] ) {
+		} elseif ( $_POST['YALW_new_password'] !== $_POST['YALW_control_password'] ) {
 			// password mismatch?
 			Session::set_next_widget_task( 'enter_new_password' );
 			$events->add( 'password_mismatch' , __( 'The passwords are not the same. Please re-enter.', 'YALW' ), 'warn' );
@@ -504,7 +504,7 @@ class Handlers {
 
 		if ($user instanceof \WP_Error ) {
 			return new \WP_Error( 'login_failure', __( 'There seems to be something wrong with the username or password.', 'YALW' ), 'warn' );
-		} else{
+		} else {
 			wp_set_auth_cookie( $user->ID );
 			// remove our GET-Variable if user logs in after password retrieval
 			wp_redirect( Handlers::remove_get_from_uri ( $_POST['YALW_redirect'] ) ) ;
@@ -547,7 +547,7 @@ class Handlers {
 		if ( ! $error instanceof \WP_Error ) {
 			return 'info';
 		}
-		if ( $error->get_error_data() == 'message' ) {
+		if ( $error->get_error_data() === 'message' ) {
 			return 'info';
 		} else {
 			return 'warn';
@@ -570,10 +570,10 @@ class Handlers {
 		if ( ! is_string( $name ) ) {
 			$name = 'yalw_nonce';
 		}
-		if ( empty( $_POST[$name] ) ) {
+		if ( empty( $_POST[ $name ] ) ) {
 			return false;
 		}
-		if ( ! wp_verify_nonce( $_POST[$name], $action ) ) {
+		if ( ! wp_verify_nonce( $_POST[ $name ], $action ) ) {
 			return false;
 		}
 		return true;
@@ -590,19 +590,19 @@ class Handlers {
 	 */
 	private static function get_remote_address() {
 		if ( defined( 'WP_FAIL2BAN_PROXIES' ) ) {
-			if ( array_key_exists('HTTP_X_FORWARDED_FOR', $_SERVER ) ) {
+			if ( array_key_exists( 'HTTP_X_FORWARDED_FOR', $_SERVER ) ) {
 				$ip = ip2long( $_SERVER['REMOTE_ADDR'] );
 				foreach( explode( ',', WP_FAIL2BAN_PROXIES ) as $proxy ) {
 					$cidr = explode( '/', $proxy );
-					if ( count( $cidr ) == 2 ) {
+					if ( count( $cidr ) === 2 ) {
 						$net = ip2long( $cidr[0] );
 						$mask = ~ ( pow( 2, ( 32 - $cidr[1] ) ) - 1 );
 					} else {
 						$net = ip2long( $proxy );
 						$mask = -1;
 					}
-					if ( ( $ip & $mask ) == $net ) {
-						if ( ( $len = strpos( $_SERVER['HTTP_X_FORWARDED_FOR'], ',' ) ) === false ) {
+					if ( ( $ip & $mask ) === $net ) {
+						if ( false === ( $len = strpos( $_SERVER['HTTP_X_FORWARDED_FOR'], ',' ) ) ) {
 							return $_SERVER['HTTP_X_FORWARDED_FOR'];
 						} else {
 							return substr( $_SERVER['HTTP_X_FORWARDED_FOR'], 0, $len );

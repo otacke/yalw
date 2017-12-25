@@ -15,7 +15,7 @@ namespace YALW;
  */
 class Settings {
 
-	/**
+    /**
      * Holds the values to be used in the fields callbacks
      */
     private $options;
@@ -34,10 +34,10 @@ class Settings {
     public function add_plugin_page() {
         // This page will be under "Settings"
         add_options_page(
-            'Settings Admin', 
-            'YALW', 
-            'manage_options', 
-            'yalw-admin', 
+            'Settings Admin',
+            'YALW',
+            'manage_options',
+            'yalw-admin',
             array( $this, 'create_admin_page' )
         );
     }
@@ -50,13 +50,13 @@ class Settings {
         $this->options = get_option( 'yalw_option' );
         ?>
         <div class="wrap">
-            <h2>YALW</h2>           
+            <h2>YALW</h2>
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
-                settings_fields( 'yalw_option_group' );   
+                settings_fields( 'yalw_option_group' );
                 do_settings_sections( 'yalw-admin' );
-                submit_button(); 
+                submit_button();
             ?>
             </form>
         </div>
@@ -66,7 +66,7 @@ class Settings {
     /**
      * Register and add settings
      */
-    public function page_init() {        
+    public function page_init() {
         register_setting(
             'yalw_option_group',
             'yalw_option',
@@ -78,23 +78,23 @@ class Settings {
             '',
             array( $this, 'print_general_section_info' ),
             'yalw-admin'
-        );		
+        );
 
         add_settings_field(
-            'widget_rememberme', 
+            'widget_rememberme',
             __( 'Widget', 'YALW' ),
-            array( $this, 'widget_rememberme_callback' ), 
-            'yalw-admin', 
+            array( $this, 'widget_rememberme_callback' ),
+            'yalw-admin',
             'general_settings'
         );
-		
+
          add_settings_field(
-            'code_reset_email_text', 
+            'code_reset_email_text',
             __( 'Email', 'YALW' ),
-            array( $this, 'code_reset_email_text_callback' ), 
-            'yalw-admin', 
+            array( $this, 'code_reset_email_text_callback' ),
+            'yalw-admin',
             'general_settings'
-        );      
+        );
     }
 
     /**
@@ -111,13 +111,13 @@ class Settings {
         return $new_input;
     }
 
-    /** 
+    /**
      * Print Widget Section text
      */
     public function print_general_section_info() {
     }
-	
-    /** 
+
+    /**
      * Get the settings option array and print one of its values
      */
     public function code_reset_email_text_callback() {
@@ -126,10 +126,10 @@ class Settings {
 		echo '<label for="code_reset_email_text">';
 		echo __( 'Here you can enter the message that will be mailed for delivering the reset code. [user_login] will be replaced by the user\'s name, [reset_code] will be replaced by the reset code and [admin_email] will be replaced by the admin\'s email address.', 'YALW' );
 		echo '</label>';
-		echo '</p>';		
+		echo '</p>';
     }
-	
-    /** 
+
+    /**
      * Get the settings option array and print one of its values
      */
     public function widget_rememberme_callback() {

@@ -137,7 +137,7 @@ function control_login() {
 
 	// set session action to show password retrieval form
 	if ( ! empty( $_GET['action'] ) ) {
-		if ( $_GET['action'] == 'retrieve_code' ) {
+		if ( $_GET['action'] === 'retrieve_code' ) {
 			Session::set_next_widget_task( 'retrieve_code' );
 		}
 	}
