@@ -13,7 +13,7 @@
  * TODO: implement sending all messages with error status to the admin
  *       (maybe in a later version)
  * TODO: add password strength detector (maybe in a later version),
- *       see display.php/display_new_password_form() 
+ *       see class-display.php/display_new_password_form()
  */
 
 /*
@@ -38,17 +38,17 @@ namespace YALW;
 // As suggested by the Wordpress Community
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-// display.php contains all functions for sending widget output the the browser
-require_once( __DIR__ . '/display.php' );
+// class-display.php contains all functions for sending widget output the the browser
+require_once( __DIR__ . '/class-display.php' );
 
-// handlers.php contains all general handler functions and their sub fuctions
-require_once( __DIR__ . '/handlers.php' );
+// class-handlers.php contains all general handler functions and their sub fuctions
+require_once( __DIR__ . '/class-handlers.php' );
 
-// session.php contains all functions to control the session
-require_once( __DIR__ . '/session.php' );
+// class-session.php contains all functions to control the session
+require_once( __DIR__ . '/class-session.php' );
 
-// settings.php contains all functions for the YALW settings
-require_once( __DIR__ . '/settings.php' );
+// class-settings.php contains all functions for the YALW settings
+require_once( __DIR__ . '/class-settings.php' );
 
 /**
  * Main class.
@@ -70,7 +70,7 @@ class YALW extends \WP_Widget {
                 __( 'Yet Another Login Widget', 'YALW' ),
                 array( 'description' => __( 'A simple login widget', 'YALW' ), ) );
     }
-	
+
 	/**
 	 * Output the content of the widget
 	 *
@@ -117,7 +117,7 @@ class YALW extends \WP_Widget {
 			 */
 			Display::display_logged_in_options();
 		}
-	
+
 		echo $args['after_widget'];
 	}
 }
@@ -134,7 +134,7 @@ function control_login() {
 	 * variables only, but you cannot set them via HTML links and a button for
 	 * the link would look plain ugly, I think :-/
 	 */
-	
+
 	// set session action to show password retrieval form
 	if ( ! empty( $_GET['action'] ) ) {
 		if ( $_GET['action'] == 'retrieve_code' ) {
@@ -164,7 +164,7 @@ function control_login() {
 	// store any error that may have occured for Display
 	if ( ! empty( $events ) ) {
 		Session::set_events( $events );
-		
+
 		/*
 		 * TODO: Implement an option that will allow admins to receive
 		 * a notification if an exception occured such as an unexpected
