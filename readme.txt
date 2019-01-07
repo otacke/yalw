@@ -1,6 +1,6 @@
 === YALW ===
 Contributors: otacke
-Donate link: https://donate.childsplaycharity.org/572f2e6c3a9e561ea1f51f573ca68c0c/
+Donate link: https://patreon.com/otacke
 Tags: login, widget, authentification
 Requires at least: 4.0
 Tested up to: 5.0
