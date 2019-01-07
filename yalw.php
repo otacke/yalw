@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Yet Another Login Widget (YALW)
  * Description: This widget is plain and simple and allows you to handle logins and password retrieval without a separate login screen. Install, add widget, done. Well, maybe not quite. You may want to modify the stylesheet a little bit to match your theme's needs...
@@ -20,14 +21,14 @@
  * This widget rebuilds quite a bunch of features offered by wp-login.php instead
  * of using the features therein because it is hardly possible.
  * I had the option to refactor the file wp-login.php, making its functionality
- * better accessible from the outside, and thus contributing to the Wordpress Core.
+ * better accessible from the outside, and thus contributing to the WordPress Core.
  * I thought about that possibility for approximately 0.0897 seconds (which is a
  * long time for an android) but decided against. I am merely a casual programmer
  * and I don't have the time or ambition to deal with the project management
- * processes of the Wordpress development community in order to promote my
+ * processes of the WordPress development community in order to promote my
  * changes, hoping they might be integrated some day. I need to get shit done.
  * And, more importantly, I don't consider myself a good programmer. It's
- * probably not advisable for me to tinker with such a crucial part of Wordpress.
+ * probably not advisable for me to tinker with such a crucial part of WordPress.
  *
  * Thanks to edik [https://profiles.wordpress.org/plocha/] for his support and
  * to akoww [https://github.com/akoww] for fixing bugs!
@@ -35,7 +36,7 @@
 
 namespace YALW;
 
-// As suggested by the Wordpress Community
+// As suggested by the WordPress Community
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
 // class-display.php contains all functions for sending widget output the the browser
@@ -61,15 +62,16 @@ require_once( __DIR__ . '/class-settings.php' );
  */
 class YALW extends \WP_Widget {
 	/**
-     * Sets up the widgets name etc
+	 * Sets up the widgets name etc
 	 */
-    public function __construct() {
-        wp_enqueue_style( 'YALW', plugins_url( 'css/yalw.css', __FILE__ ) );
+	public function __construct() {
+		wp_enqueue_style( 'YALW', plugins_url( 'css/yalw.css', __FILE__ ) );
 		parent::__construct(
-                'YALW',
-                __( 'Yet Another Login Widget', 'YALW' ),
-                array( 'description' => __( 'A simple login widget', 'YALW' ), ) );
-    }
+			'YALW',
+			__( 'Yet Another Login Widget', 'YALW' ),
+			array( 'description' => __( 'A simple login widget', 'YALW' ) )
+		);
+	}
 
 	/**
 	 * Output the content of the widget
@@ -137,7 +139,7 @@ function control_login() {
 
 	// set session action to show password retrieval form
 	if ( ! empty( $_GET['action'] ) ) {
-		if ( $_GET['action'] === 'retrieve_code' ) {
+		if ( 'retrieve_code' === $_GET['action'] ) {
 			Session::set_next_widget_task( 'retrieve_code' );
 		}
 	}
@@ -176,7 +178,7 @@ function control_login() {
 /**
  * add the widget
  */
-function register_YALW_widget() {
+function register_yalw_widget() {
 	register_widget( 'YALW\YALW' );
 }
 
@@ -190,7 +192,7 @@ function init_widget() {
 }
 
 // Let's add some action :-)
-add_action( 'widgets_init', 'YALW\register_YALW_widget' );
+add_action( 'widgets_init', 'YALW\register_yalw_widget' );
 add_action( 'init', 'YALW\Session::start_session', 1 );
 add_action( 'wp_logout', 'YALW\Session::end_session' );
 add_action( 'wp_login', 'YALW\Session::end_session' );

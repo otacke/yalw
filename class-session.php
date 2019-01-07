@@ -28,12 +28,13 @@ class Session {
 		if ( ! session_id() ) {
 			// set HttpOnly flag to prevent scripts from accessing the cookie
 			$cookie_params = session_get_cookie_params();
-			session_set_cookie_params (
-					$cookie_params['lifetime'],
-					$cookie_params['path'],
-					$cookie_params['domain'],
-					$cookie_params['secure'],
-					true ); // httponly
+			session_set_cookie_params(
+				$cookie_params['lifetime'],
+				$cookie_params['path'],
+				$cookie_params['domain'],
+				$cookie_params['secure'],
+				true
+			); // httponly
 
 			session_start();
 		}

@@ -35,7 +35,7 @@ class Display {
 					$widget_title = esc_attr( __( 'Welcome', 'YALW' ) ) . ' ' .
 							$user_data->first_name . ' ' . $user_data->last_name . '!';
 				} else {
-					$widget_title =	esc_attr( __( 'Welcome', 'YALW' ) ) . ' ' .	$user_login . '!';
+					$widget_title = esc_attr( __( 'Welcome', 'YALW' ) ) . ' ' . $user_login . '!';
 				}
 			}
 		} else {
@@ -74,18 +74,18 @@ class Display {
 
 		// show option to remember the user after login if chosen in settings
 		$options = get_option( 'yalw_option' );
-		if ( isset( $options['widget_rememberme'] ) && $options['widget_rememberme'] === 1 ) {
+		if ( isset( $options['widget_rememberme'] ) && 1 === $options['widget_rememberme'] ) {
 			echo '<div id="YALW_rememberme_container">';
-			echo '<label id="YALW_rememberme_label" for="YALW_rememberme" class="YALW_label"><input name="YALW_rememberme" type="checkbox" id="YALW_rememberme" value="forever" /> ' . esc_attr( __( 'Remember Me', 'YALW') ) . '</label>';
+			echo '<label id="YALW_rememberme_label" for="YALW_rememberme" class="YALW_label"><input name="YALW_rememberme" type="checkbox" id="YALW_rememberme" value="forever" /> ' . esc_attr( __( 'Remember Me', 'YALW' ) ) . '</label>';
 			echo '</div>';
 		}
 
 		echo '<div class="YALW_submit_container">';
-		echo '<input type="submit" name="YALW_submit" id="YALW_submit_login" class="button button-primary button-large" value="' . esc_attr( __( 'Login', 'YALW' ) ). '" />';
+		echo '<input type="submit" name="YALW_submit" id="YALW_submit_login" class="button button-primary button-large" value="' . esc_attr( __( 'Login', 'YALW' ) ) . '" />';
 		echo '</div>';
 
 		echo '<div id="YALW_credentials_lost_link_container">';
-		// keep all GET variables Wordpress might have used so far and add our action trigger
+		// keep all GET variables WordPress might have used so far and add our action trigger
 		echo '<a href="' . esc_html( $_SERVER['PHP_SELF'] . '?' . http_build_query( array_merge( $_GET, array( 'action' => 'retrieve_code' ) ) ) ) . '">' . esc_attr( __( 'Lost your credentials?', 'YALW' ) ) . '</a>';
 		echo '</div>';
 
@@ -154,7 +154,7 @@ class Display {
 		echo '<form name="YALW_new_password_form" id="YALW_new_password_form" method="post" action="' . esc_url( $_SERVER['REQUEST_URI'] ) . '">';
 		wp_nonce_field( 'new_password_form', 'yalw_nonce' );
 		// Prevent user's from obtaining rights of other users
-		echo '<input type="hidden" name="YALW_code" value="' . esc_attr ( $_POST['YALW_code'] ) . '" />';
+		echo '<input type="hidden" name="YALW_code" value="' . esc_attr( $_POST['YALW_code'] ) . '" />';
 		echo '<input type="hidden" name="YALW_option" value="YALW_reset_password" />';
 		echo '<input type="hidden" name="YALW_redirect" value="' . esc_attr( $_SERVER['REQUEST_URI'] ) . '" />';
 
@@ -194,10 +194,10 @@ class Display {
 		echo '<div id="YALW_widget">';
 		echo '<ul id="YALW_login_options">';
 		echo '<li id="YALW_dashboard_link">';
-		echo '<a href="' . esc_url( admin_url() ) . '" title="' . esc_attr( __( 'Dashboard' , 'YALW' ) ) . '">' . esc_attr( __( 'Dashboard' , 'YALW' ) ) .'</a>';
+		echo '<a href="' . esc_url( admin_url() ) . '" title="' . esc_attr( __( 'Dashboard', 'YALW' ) ) . '">' . esc_attr( __( 'Dashboard', 'YALW' ) ) . '</a>';
 		echo '</li>';
 		echo '<li id="YALW_logout_link">';
-		echo '<a href="' . esc_url( wp_logout_url( $_SERVER['REQUEST_URI'] ) ) . '" title="' . esc_attr( __( 'Logout' , 'YALW' ) ) . '">' . esc_attr( __( 'Logout' , 'YALW' ) ) . '</a>';
+		echo '<a href="' . esc_url( wp_logout_url( $_SERVER['REQUEST_URI'] ) ) . '" title="' . esc_attr( __( 'Logout', 'YALW' ) ) . '">' . esc_attr( __( 'Logout', 'YALW' ) ) . '</a>';
 		echo '</li>';
 		echo '</ul>';
 		echo '</div>';
@@ -247,19 +247,23 @@ class Display {
 							$information .= ' ' . $event_message . "<br />\n";
 							break;
 						case 'warn':
-							$warnings    .= ' ' . $event_message . "<br />\n";
+							$warnings .= ' ' . $event_message . "<br />\n";
 							break;
 						case 'error':
-							$exceptions  .= ' ' . $event_message . "<br />\n";
+							$exceptions .= ' ' . $event_message . "<br />\n";
 							break;
 						default:
 							// should not be reached, but just in case...
-							$warnings    .= ' ' . $event_message . "<br />\n";
+							$warnings .= ' ' . $event_message . "<br />\n";
 							break;
 					}
 				}
 			}
 		}
-		return array( 'exceptions' => $exceptions, 'warnings' => $warnings, 'information' => $information );
+		return array(
+			'exceptions'  => $exceptions,
+			'warnings'    => $warnings,
+			'information' => $information,
+		);
 	}
 }
