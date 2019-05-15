@@ -3,7 +3,7 @@ Contributors: otacke
 Donate link: https://patreon.com/otacke
 Tags: login, widget, authentification
 Requires at least: 4.0
-Tested up to: 5.0
+Tested up to: 5.2
 Stable tag: 0.16.5
 License: WTFPL - Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
