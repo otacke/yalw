@@ -1,6 +1,5 @@
 === YALW ===
 Contributors: otacke
-Donate link: https://patreon.com/otacke
 Tags: login, widget, authentification
 Requires at least: 4.0
 Tested up to: 5.3
