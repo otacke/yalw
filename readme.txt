@@ -2,7 +2,7 @@
 Contributors: otacke
 Tags: login, widget, authentification
 Requires at least: 4.0
-Tested up to: 5.3
+Tested up to: 5.7
 Stable tag: 0.16.5
 License: WTFPL - Do What the Fuck You Want to Public License
 License URI: http://www.wtfpl.net/
